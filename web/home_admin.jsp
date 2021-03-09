@@ -52,20 +52,26 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon far fa-address-card"></i>
+                        <a href="home_admin.jsp?opcion=partidos" class="nav-link">
+                            <i class="nav-icon fab fa-old-republic"></i>
                             <p>Partidos Politicos</p>
                         </a>
                     </li>
+                     <li class="nav-item">
+                        <a href="home_admin.jsp?opcion=papeletas" class="nav-link">
+                            <i class="nav-icon fas fa-vote-yea"></i>
+                            <p>Papeletas Electorales</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-book-reader"></i>
+                        <a href="home_admin.jsp?opcion=mesas" class="nav-link">
+                            <i class="nav-icon fas fa-balance-scale"></i>
                             <p>Mesas Electorales</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-bullhorn"></i>
+                            <i class="nav-icon fas fa-users"></i>
                             <p>Gestion de Usuarios</p>
                         </a>
                     </li>
@@ -77,7 +83,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="salir.jsp" class="nav-link">
-                            <i class="nav-icon fas fa-university"></i>
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>Salir del sistema</p>
                         </a>
                     </li>
@@ -87,13 +93,24 @@
         <!-- /.sidebar -->
         <!-- /.sidebar -->
     </aside>
-    <!-- inicio Panel
-    require_once 'views/Student/'.$_SESSION['panel'].'.php'
-    -->
-      <%@include file="panel_partidos.jsp" %>
+    <!-- inicio Panel-->
+    
+    <% 
+        String panel=request.getParameter("opcion").toString().trim();
+        if(panel.equalsIgnoreCase("papeletas")){
+            panel="panel_papeletas.jsp";
+            
+        }else if(panel.equalsIgnoreCase("mesas")){
+            panel="panel_mesas.jsp";
+        }else{
+            panel="panel_partidos.jsp";
+        }
+        %>
+    <jsp:include page='<%=panel%>'/>
     <!-- Final Panel-->
+    
+    
     <!-- Main Footer -->
-   
     <%@include file="footer.jsp" %>
 </div>
 <!-- ./wrapper -->

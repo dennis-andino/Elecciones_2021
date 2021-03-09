@@ -61,31 +61,9 @@
                                                 <form method="post" action="#" style="display: inline-block;">
                                                     <button type="submit" class="btn btn-warning btn-sm" >Eliminar</button>
                                                </form>
+                                            </td>
                                         </tr>
-                                         <tr>
-                                            <td><strong>2</strong></td>
-                                            <td><img src="imagenes/nuevasideas.png" width="80"></td>
-                                            <td><strong>Nuevas Ideas</strong></td>
-                                            <td>Partido fundado en 2020 por Nayib Perez.</td>
-                                            <td>
-                                                <a role="button" class="btn btn-info btn-sm" href="#">Editar</a>
-                                                <form method="post" action="#" style="display: inline-block;">
-                                                    <button type="submit" class="btn btn-warning btn-sm" >Eliminar</button>
-                                               </form>
-                                        </tr>
-                                         <tr>
-                                            <td><strong>3</strong></td>
-                                            <td><img src="imagenes/mujeresmas.png" width="80"></td>
-                                            <td><strong> Mujeres Mas</strong></td>
-                                            <td>Partido fundado por Maria del Carmen en 2021.</td>
-                                            <td>
-                                                <a role="button" class="btn btn-info btn-sm" href="#">Editar</a>
-                                                <form method="post" action="#" style="display: inline-block;">
-                                                    <button type="submit" class="btn btn-warning btn-sm" >Eliminar</button>
-                                               </form>
-                                        </tr>
-                                        
-                                        
+                                       
                                 </tbody>
                             </table>
                         </div>

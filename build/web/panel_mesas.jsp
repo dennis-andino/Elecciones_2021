@@ -33,18 +33,27 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Presidente</th>
-                                    <th>Fiscal</th>
-                                    <th>Diputados</th>
-                                   
+                                    <th>Secretario</th>
+                                    <th>Vocal</th>
+                                    <th>Departamento</th>
+                                    <th>ciudad</th>
+                                    <th>Ubicacion</th>
+                                    <th>Electores</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 
                                         <tr>
-                                            <td><strong>Nuevas Ideas</strong></td>
-                                            <td>5</td>
-                                            <td>4</td>
-                                            <td>50</td>
+                                            <td><strong>1</strong></td>
+                                            <td>Jose Santos</td>
+                                            <td>Maria Jose</td>
+                                            <td>Pedro picapiedra</td>
+                                            <td>Francisco Morazan</td>
+                                            <td>Tegucigalpa</td>
+                                            <td><a href="home_admin.jsp?panel=MapsMesas">Las minitas 3era etapa</a></td>
+                                            <td><a href="home_admin.jsp?panel=panel_electores">500</a></td>
+                                              <td>Modificar Eliminar</td>
                                         </tr>
                                        
                                 </tbody>

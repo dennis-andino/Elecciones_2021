@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Gestión de Mesas Electorales</h1>
+                    <h1 class="m-0 text-dark">Gestión de Usuarios</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,35 +25,29 @@
                 <div class="col">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h5 class="m-0">Mesas Activas</h5>
+                            <h5 class="m-0">Lista de usuarios</h5>
                         </div>
                         <div class="card-body table-responsive">
                             <table id="maintable" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Presidente</th>
-                                    <th>Secretario</th>
-                                    <th>Vocal</th>
-                                    <th>Departamento</th>
-                                    <th>ciudad</th>
-                                    <th>Ubicacion</th>
-                                    <th>Electores</th>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Direccion</th>
+                                    <th>Correo</th>
+                                    <th>x</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 
                                         <tr>
-                                            <td><strong>1</strong></td>
-                                            <td>Jose Santos</td>
-                                            <td>Maria Jose</td>
-                                            <td>Pedro picapiedra</td>
+                                            <td><strong>0801199318270</strong></td>
+                                            <td>Dennis Andino</td>
+                                            <td>1</td>
                                             <td>Francisco Morazan</td>
-                                            <td>Tegucigalpa</td>
-                                            <td><a href="home_admin.jsp?panel=MapsMesas">Las minitas 3era etapa</a></td>
-                                            <td><a href="home_admin.jsp?panel=panel_electores">500</a></td>
-                                              <td>Modificar Eliminar</td>
+                                            <td>si</td>
+                                              <td>Modificar</td>
                                         </tr>
                                        
                                 </tbody>

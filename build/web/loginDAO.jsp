@@ -35,7 +35,7 @@
                 request.getSession().setAttribute("fechanac", user.getFecha_nac());
                 request.getSession().setAttribute("rol", user.getRol());
                 request.getSession().setAttribute("fotografia", user.getFotografia());
-                out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_admin.jsp';</script>");
+                out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_admin.jsp?panel=panel_partidos';</script>");
 
             } else {
                 out.print("<script>alert(\" Upps ! no se encontro usuario , verifique sus datos en intentelo nuevamente. \");window.location.href='index.jsp';</script>");

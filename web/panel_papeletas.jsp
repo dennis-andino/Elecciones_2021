@@ -41,7 +41,7 @@
                                 <tbody>
                                 
                                         <tr>
-                                            <td><strong>Nuevas Ideas</strong></td>
+                                            <td><strong><a href="home_admin.jsp?panel=descripcion_papeleta">Nuevas Ideas</a></strong></td>
                                             <td>5</td>
                                             <td>4</td>
                                             <td>50</td>
@@ -60,3 +60,5 @@
         <!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
+
+<script src="assets/js/tablesFormats.js"></script>

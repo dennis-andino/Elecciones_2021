@@ -35,7 +35,7 @@
                                     <th>Nombre</th>
                                     <th>Direccion</th>
                                     <th>Correo</th>
-                                    <th>x</th>
+                                    <th>Mesa</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -46,7 +46,7 @@
                                             <td>Dennis Andino</td>
                                             <td>1</td>
                                             <td>Francisco Morazan</td>
-                                            <td>si</td>
+                                            <td>35</td>
                                               <td>Modificar</td>
                                         </tr>
                                        

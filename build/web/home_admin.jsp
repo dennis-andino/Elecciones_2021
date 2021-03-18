@@ -31,7 +31,7 @@
             <!-- Brand Logo -->
             <a href="#" class="brand-link navbar-navy">
                 <img src="imagenes/logo.png" class="brand-image img-circle elevation-3">
-                <span class="brand-text font-weight-light"><?=$_SESSION['institution']?></span>
+                <span class="brand-text font-weight-light">TSE</span>
             </a>
             <!-- Sidebar -->
             <div class="sidebar">
@@ -42,12 +42,19 @@
                     </div>
                     <div class="info">
                         <a href="#" class="d-block"><%=request.getSession().getAttribute("nombre")%></a>
+                           <a href="#" class="d-block">Administrador</a>
                     </div>
                 </div>
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                         <li class="nav-item">
+                            <a href="home_admin.jsp?panel=resultados_resumen" class="nav-link">
+                                <i class="nav-icon fas fa-house-user"></i>
+                                <p>Inicio</p>
+                            </a>
+                        </li>  
                         <li class="nav-item">
                             <a href="home_admin.jsp?panel=panel_partidos" class="nav-link">
                                 <i class="nav-icon fab fa-old-republic"></i>
@@ -100,24 +107,24 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-address-card"></i>
+                               <i class="nav-icon fas fa-poll"></i>
                                 <p>Resultados Electorales <i class="fas fa-angle-left right"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="home_admin.jsp?panel=panel_resultados" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Presidentes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="home_admin.jsp?panel=panel_resultados" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Alcaldes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="home_admin.jsp?panel=panel_resultados" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Diputados</p>
                                     </a>
@@ -125,7 +132,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="salir.jsp" class="nav-link">
+                            <a href="home_admin.jsp?panel=panel_votar1" class="nav-link">
                                 <i class="nav-icon fas fa-person-booth"></i>
                                 <p>Votar</p>
                             </a>

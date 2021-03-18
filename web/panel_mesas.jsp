@@ -25,7 +25,7 @@
                 <div class="col">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h5 class="m-0">Mesas Activas</h5>
+                           <h5 class="m-0"><label>Mesas Activas</label><button type="button" class="btn btn-success btn-xs" data-bs-toggle="modal" data-bs-target="#addMesa"><i class="fas fa-plus-square"></i></h5>
                         </div>
                         <div class="card-body table-responsive">
                             <table id="maintable" class="table table-bordered table-hover">
@@ -53,7 +53,7 @@
                                             <td>Tegucigalpa</td>
                                             <td><a href="home_admin.jsp?panel=MapsMesas">Las minitas 3era etapa</a></td>
                                             <td><a href="home_admin.jsp?panel=panel_electores">500</a></td>
-                                              <td>Modificar Eliminar</td>
+                                              <td><button type="button" class="btn btn-warning btn-xs" data-bs-toggle="modal" data-bs-target="#editMesaModal">Modificar</button></td>
                                         </tr>
                                        
                                 </tbody>
@@ -68,4 +68,39 @@
         </div>
         <!-- /.row -->
     </div><!-- /.container-fluid -->
+    <!-- Modal -->
+<div class="modal fade" id="editMesaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Mesa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="modal fade" id="addMesa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Mesa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>

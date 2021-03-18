@@ -25,7 +25,7 @@
             //String claveEncriptada_ = encriptador_.encriptar(claveoriginal_, claveEncriptacion_);
             user.setId_us(request.getParameter("username").trim());
             //user.setClave(claveEncriptada_);
-             user.setClave(claveoriginal_);
+            user.setClave(claveoriginal_);
             user = userDAO.validar(user);
             if (user != null) {
                 request.getSession().setAttribute("id", user.getId_us());
@@ -35,7 +35,31 @@
                 request.getSession().setAttribute("fechanac", user.getFecha_nac());
                 request.getSession().setAttribute("rol", user.getRol());
                 request.getSession().setAttribute("fotografia", user.getFotografia());
-                out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_admin.jsp?panel=panel_partidos';</script>");
+                int rol = user.getRol();
+               // System.out.println(" el rol es : " +  ((Object)rol).getClass().getSimpleName());
+               // System.exit(0);
+                
+                switch (rol) {
+                    case 0: //usuario elector
+                        out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_elector.jsp?panel=panel_elector';</script>");
+                        break;
+
+                    case 1: //usuario admin
+                        out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_admin.jsp?panel=resultados_resumen';</script>");
+                        break;
+
+                    case 2: //usuario magistrado
+                        out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_magistrado.jsp?panel=resultados_resumen';</script>");
+                        break;
+
+                    case 3: //usuario miembro
+                        out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_miembro.jsp?panel=resultados_mesa';</script>");
+                        break;
+
+                    default://usuario sin rol
+                        out.print("<script>alert(\"El usuario" + request.getSession().getAttribute("nombre") + " No tiene un rol definido " + " \");window.location.href='index.jsp';</script>");
+                        break;
+                }
 
             } else {
                 out.print("<script>alert(\" Upps ! no se encontro usuario , verifique sus datos en intentelo nuevamente. \");window.location.href='index.jsp';</script>");

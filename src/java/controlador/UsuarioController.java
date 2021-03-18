@@ -35,9 +35,9 @@ public class UsuarioController {
                 us.setId_us(rs.getString(1));
                 us.setNombre(rs.getString(3));
                 us.setCorreo(rs.getString(4));
-                us.setTelefono(rs.getString(5));
-                us.setFecha_nac(rs.getString(6));
-                us.setRol(rs.getInt(7));
+                us.setTelefono(rs.getString(6));
+                us.setFecha_nac(rs.getString(7));
+                us.setRol(rs.getInt(9));
                 us.setFotografia(rs.getString(8));         
             }
             rs.close();
@@ -52,6 +52,7 @@ public class UsuarioController {
             }
 
         } catch (SQLException e) {
+             System.out.println("se disparo el catch:" + resultado);
             return null;
         }
 

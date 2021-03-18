@@ -1,8 +1,10 @@
 <%@page import="controlador.EstadisticasController"%>
 <%
-EstadisticasController datos=new EstadisticasController();
-String resultados[]=new String[2];
-resultados=datos.ResultadosProPresidente();
+    EstadisticasController datos = new EstadisticasController();
+    String result_presi[] = new String[2];
+    String result_alcalde[] = new String[2];
+    result_presi = datos.ResultadosPorPresidente();
+    result_alcalde = datos.ResultadosPorAlcalde();
 %>
 
 <style type="text/css">
@@ -80,7 +82,7 @@ resultados=datos.ResultadosProPresidente();
                             <h5 class="m-0">Presidentes</h5>
                         </div>
                         <div class="card-body">
-  <div class="card-body" id="resultadospresi"></div>
+                            <div class="card-body" id="result_presi"></div>
                         </div>
                     </div>
                 </div>
@@ -94,23 +96,7 @@ resultados=datos.ResultadosProPresidente();
                             <h5 class="m-0">Alcaldes</h5>
                         </div>
                         <div class="card-body">
-
-                            Grafica de resultados
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-md-6 -->
-            </div>
-            <div class="row">
-                <!-- /.col-md-6 -->
-                <div class="col">
-                    <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <h5 class="m-0">Diputados</h5>
-                        </div>
-                        <div class="card-body">
-
-                            Grafica de resultados
+                            <div class="card-body" id="result_alcalde"></div>
                         </div>
                     </div>
                 </div>
@@ -123,25 +109,50 @@ resultados=datos.ResultadosProPresidente();
     </div><!-- /.container-fluid -->
 </div>
 <script>
-    $(function() {
+    $(function () {
         var chartOptions = {
             chart: {
-                renderTo: 'resultadospresi',
-                type: 'column'
+                renderTo: 'result_presi',
+                type: 'bar'
             },
             title: {
                 text: 'Estadisticas para candidatos a la presidencia'
             },
             xAxis: {
-                categories: [<%=resultados[0]%>]
+                categories: [<%=result_presi[0]%>]
             },
             yAxis: {
                 title: 'value'
             },
             series: [{
-                name: 'Votos',
-                data: [<%=resultados[1]%>]
-            }]
+                    name: 'Votos',
+                    data: [<%=result_presi[1]%>]
+                }]
+        }
+
+        var chart = new Highcharts.Chart(chartOptions);
+    });
+</script>
+<script>
+    $(function () {
+        var chartOptions = {
+            chart: {
+                renderTo: 'result_alcalde',
+                type: 'column'
+            },
+            title: {
+                text: 'Estadisticas para candidatos a alcaldia'
+            },
+            xAxis: {
+                categories: [<%=result_alcalde[0]%>]
+            },
+            yAxis: {
+                title: 'value'
+            },
+            series: [{
+                    name: 'Votos',
+                    data: [<%=result_alcalde[1]%>]
+                }]
         }
 
         var chart = new Highcharts.Chart(chartOptions);

@@ -50,7 +50,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="home_admin.jsp?panel=panel_mesa" class="nav-link">
+                            <a href="home_miembro.jsp?panel=panel_mesa" class="nav-link">
                                 <i class="nav-icon fas fa-democrat"></i>
                                 <p>Mesa Electoral</p>
                             </a>
@@ -68,19 +68,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="home_admin.jsp?panel=panel_resultados" class="nav-link">
+                                    <a href="home_miembro.jsp?panel=panel_resultados" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Presidentes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="home_admin.jsp?panel=panel_resultados" class="nav-link">
+                                    <a href="home_miembro.jsp?panel=panel_resultados" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Alcaldes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="home_admin.jsp?panel=panel_resultados" class="nav-link">
+                                    <a href="home_miembro.jsp?panel=panel_resultados" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Diputados</p>
                                     </a>
@@ -88,14 +88,14 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="home_admin.jsp?panel=panel_votar1" class="nav-link">
+                            <a href="home_miembro.jsp?panel=panel_votar1" class="nav-link">
                                 <i class="nav-icon  fas fa-map-marker-alt"></i>
                                 
                                 <p>Ubicacion de mesa</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="home_admin.jsp?panel=panel_votar1" class="nav-link">
+                            <a href="home_miembro.jsp?panel=panel_votar1" class="nav-link">
                                 <i class="nav-icon fas fa-person-booth"></i>
                                 <p>Votar</p>
                             </a>

@@ -70,13 +70,16 @@ INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotogra
 VALUES('0801199318284','pepe','Nelson Avila','nelson@outlook.com','prados universitarios','98987654','01-01-1990','userdefault.png',0,1);
 commit;
 
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+
 --------------------------------------------------------
 --CANDIDATOS A LA ALCALDIAS PARTIDO NACIONAL
 --------------------------------------------------------
---TGU
+--TGU 0801199318285
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
 VALUES('0801199318285','pepe','Wilfredo Castelladnos Madrid','willf@outlook.com','prados universitarios','98987654','01-01-1990','userdefault.png',0,1);
---SPS
+--SPS 0801199318286
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
 VALUES('0801199318286','pepe','Oscar Kilgore','okilgor@outlook.com','14 ave res. Villanova','98987654','01-01-1990','userdefault.png',0,2);
 commit;
@@ -86,23 +89,23 @@ commit;
 --CANDIDATOS A LA ALCALDIAS PARTIDO LIBERAL
 --------------------------------------------------------
 
---TGU
+--TGU (0801199318287)
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
 VALUES('0801199318287','pepe','Hermes Alvarado Guzman','hermes@outlook.com','prados universitarios','98987654','01-01-1990','userdefault.png',0,1);
 
---SPS
+--SPS (0801199318288)
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
 VALUES('0801199318288','pepe','Orbin Miranda Sanchez','orbin@outlook.com','14 ave res. Villanova','98987654','01-01-1990','userdefault.png',0,2);
 commit;
-select * from USUARIOS order by id
+select * from USUARIOS order by id;
 
 --------------------------------------------------------
 --CANDIDATOS A LA ALCALDIAS PARTIDO LIBRE
 --------------------------------------------------------
---TGU
+--TGU (0801199318289)
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
 VALUES('0801199318289','pepe','Orbin Miranda Santos','miranda@outlook.com','prados universitarios','98987654','01-01-1990','userdefault.png',0,1);
---SPS
+--SPS (0801199318290)
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
 VALUES('0801199318290','pepe','Manuel Miranda Santo','manuel@outlook.com','prados universitarios','98987654','01-01-1990','userdefault.png',0,2);
 commit;
@@ -223,58 +226,105 @@ INSERT INTO MESAS(id,descripcion,departamento,municipio,presidente,secretario,vo
 COMMIT;
 select * from mesas;
 --------------------------------------------------------
---VOTOS PARA PRESIDENTE
+--VOTOS PARA PRESIDENTE (Pendiende correccion de municipio, departamento y mesa segun municipio)
 -------------------------------------------------------
 --Presidente LIBERAL
 INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318100','0801199318283',1,1,2021,1,1,1);
 INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318101','0801199318283',1,1,2021,1,1,1);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318102','0801199318283',1,1,2021,1,1,2);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318103','0801199318283',1,1,2021,1,1,3);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318102','0801199318283',1,1,2021,1,1,2);--
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318103','0801199318283',1,1,2021,1,1,3);--
 INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318283','0801199318283',1,1,2021,1,1,1);
 --Presidente NACIONAL
 INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318104','0801199318282',1,1,2021,1,1,1);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318105','0801199318282',1,1,2021,1,1,2);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318106','0801199318282',1,1,2021,1,1,2);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318105','0801199318282',1,1,2021,1,1,2);--
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318106','0801199318282',1,1,2021,1,1,2);--
 INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318282','0801199318282',1,1,2021,1,1,1);
 
 --Presidente LIBRE
 INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318107','0801199318284',1,1,2021,1,1,1);
 INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318108','0801199318284',1,1,2021,1,1,1);
 INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318109','0801199318284',1,1,2021,1,1,1);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318110','0801199318284',1,1,2021,1,1,2);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318111','0801199318284',1,1,2021,1,1,2);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318112','0801199318284',1,1,2021,1,1,2);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318110','0801199318284',1,1,2021,1,1,2);--
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318111','0801199318284',1,1,2021,1,1,2);--
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318112','0801199318284',1,1,2021,1,1,2);--
 INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318113','0801199318284',1,1,2021,1,1,1);
 INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318284','0801199318284',1,1,2021,1,1,1);
 COMMIT;
 --------------------------------------------------------
 --VOTOS PARA ALCALDES
 -------------------------------------------------------
---Alcaldes LIBERAL 0801199318287  0801199318288
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318100','0801199318283',1,1,2021,1,1,1);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318101','0801199318283',1,1,2021,1,1,1);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318102','0801199318283',1,1,2021,1,1,2);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318103','0801199318283',1,1,2021,1,1,3);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318283','0801199318283',1,1,2021,1,1,1);
 --Alcalde NACIONAL
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318104','0801199318282',1,1,2021,1,1,1);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318105','0801199318282',1,1,2021,1,1,2);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318106','0801199318282',1,1,2021,1,1,2);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318282','0801199318282',1,1,2021,1,1,1);
+-------------------TGU (0801199318285)
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318104','0801199318285',2,1,2021,1,1,1);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318282','0801199318285',2,1,2021,1,1,1);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318285','0801199318285',2,1,2021,1,1,1);
+
+ -----------------SPS (0801199318286)
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318105','0801199318286',2,1,2021,2,2,2);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318106','0801199318286',2,1,2021,2,2,2);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318286','0801199318286',2,1,2021,2,2,2);
+COMMIT;
+
+--Alcaldes LIBERAL 
+-------------------TGU (0801199318287)
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318100','0801199318287',2,2,2021,1,1,1);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318101','0801199318287',2,2,2021,1,1,1);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318283','0801199318287',2,2,2021,1,1,1);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318287','0801199318287',2,2,2021,1,1,1);
+-------------------SPS (0801199318288)
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318102','0801199318288',2,2,2021,1,2,2);--corregir departamento
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318288','0801199318288',2,2,2021,1,2,2);--
+-------------------juticalpa (0801199318288)
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318103','0801199318283',2,2,2021,1,1,3);--pendiente de ejecutar porque falta candidato para esa mesa
+COMMIT;
+select * from partidos
+
 
 --Alcalde LIBRE
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318107','0801199318284',1,1,2021,1,1,1);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318108','0801199318284',1,1,2021,1,1,1);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318109','0801199318284',1,1,2021,1,1,1);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318110','0801199318284',1,1,2021,1,1,2);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318111','0801199318284',1,1,2021,1,1,2);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318112','0801199318284',1,1,2021,1,1,2);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318113','0801199318284',1,1,2021,1,1,1);
-INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318284','0801199318284',1,1,2021,1,1,1);
+-------------------TGU (0801199318289)
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318107','0801199318289',2,3,2021,1,1,1);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318108','0801199318289',2,3,2021,1,1,1);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318109','0801199318289',2,3,2021,1,1,1);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318113','0801199318289',2,3,2021,1,1,1);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318284','0801199318289',2,3,2021,1,1,1);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318289','0801199318289',2,3,2021,1,1,1);
+-----------------SPS (0801199318290)
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318110','0801199318290',2,3,2021,2,2,2);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318111','0801199318290',2,3,2021,2,2,2);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318112','0801199318290',2,3,2021,2,2,2);
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa) VALUES(secuencia_votos.nextval,'0801199318290','0801199318290',2,3,2021,2,2,2);
+
 COMMIT;
 select * from VOTOS;
-SELECT usuarios.nombre,count(votos.candidato) as total FROM votos INNER JOIN usuarios ON votos.candidato= usuarios.id GROUP BY usuarios.nombre;
+--obteniene los votos por presidente
+SELECT usuarios.nombre,count(votos.candidato) as total FROM votos INNER JOIN usuarios ON votos.candidato= usuarios.id where votos.tipo_candidatura=1 GROUP BY usuarios.nombre;
+--obtiene votos por alcalde y municipio
+select concat(concat(nombre,' ['),concat(municipio,' ]'))as candidato,total from vista_resultados_alcaldes order by municipio;
+select * from vista_resultados_alcaldes;
+SELECT usuarios.nombre,votos.municipio ,count(usuarios.nombre) as total FROM votos INNER JOIN usuarios ON votos.candidato= usuarios.id where votos.tipo_candidatura=2 group by usuarios.nombre,votos.municipio having MAX(total);
+select * from partidos where estado=1;
+update partidos set logo='imagenes/libre.png' where id=3;
 
+--__________________________________________--
+--CREDENCIALES
+----------------------------------------------
+usuario administror: 0801199318270
+clave: pepe
+
+usuario miembro mesa: 0801199318276
+clave: pepe
+
+usuario magistrado: 0801199318281
+clave: pepe
+
+usuario elector: 0801199318290
+clave: pepe
+
+paneles habilitados unicamente administrador:
+--------------------------------------------------
+partidos politicos : ya lee pero aun no guarda.
+todos ya imprimen pdf
+mesas electorales , ya accede a mapa y muestra las mesas electorales
 
 
 

@@ -1,4 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+if(session.getAttribute("nombre")==null){
+    request.getRequestDispatcher("index.jsp");
+    out.print("<script>location.replace('index.jsp');</script>");
+}
+%>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -165,10 +171,12 @@
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
+    
     <!-- 
     <?php if(isset($_SESSION['alert'])):?>
-    <script> swal("<?=$_SESSION['alert']['title']?>", "<?=$_SESSION['alert']['msj']?>", "<?=$_SESSION['alert']['type']?>");</script>
+    <script> swal("<?=$_SESSION['alert']['title']?>", "<?=$_SESSION['alert']['msj']?>", "<?=$_SESSION['alert']['type']?>");</script
     <?php unset($_SESSION['alert']); endif; ?>-->
+    <script src="assets/js/tablesFormats.js"></script>
 </body>
 </html>
 

@@ -48,12 +48,12 @@
                         out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_admin.jsp?panel=resultados_resumen';</script>");
                         break;
 
-                    case 2: //usuario magistrado
-                        out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_magistrado.jsp?panel=resultados_resumen';</script>");
+                    case 2: //usuario miembro mesa
+                        out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_miembro.jsp?panel=panel_mesa';</script>");
                         break;
 
-                    case 3: //usuario miembro
-                        out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_miembro.jsp?panel=resultados_mesa';</script>");
+                    case 3: //usuario magistrado
+                        out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_magistrado.jsp?panel=resultados_resumen';</script>");
                         break;
 
                     default://usuario sin rol

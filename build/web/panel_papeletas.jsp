@@ -46,6 +46,18 @@
                                             <td>4</td>
                                             <td>50</td>
                                         </tr>
+                                         <tr>
+                                            <td><strong><a href="home_admin.jsp?panel=descripcion_papeleta">PN</a></strong></td>
+                                            <td>6</td>
+                                            <td>5</td>
+                                            <td>61</td>
+                                        </tr>
+                                         <tr>
+                                            <td><strong><a href="home_admin.jsp?panel=descripcion_papeleta">PL</a></strong></td>
+                                            <td>7</td>
+                                            <td>12</td>
+                                            <td>70</td>
+                                        </tr>
                                        
                                 </tbody>
                             </table>
@@ -60,5 +72,3 @@
         <!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
-
-<script src="assets/js/tablesFormats.js"></script>

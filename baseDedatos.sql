@@ -84,6 +84,8 @@ CREATE TABLE mesas (
     secretario    VARCHAR2(30) NOT NULL,
     vocal         VARCHAR2(30) NOT NULL,
     estado        NUMBER DEFAULT ( 1 ) NOT NULL,
+    latitud       VARCHAR2(50) NOT NULL,
+    longitud      VARCHAR2(50) NOT NULL,
     CONSTRAINT mesa_usuario_presidente_fk FOREIGN KEY ( presidente )
         REFERENCES usuarios ( id ),
     CONSTRAINT mesa_usuario_secretario_fk FOREIGN KEY ( secretario )
@@ -95,6 +97,15 @@ CREATE TABLE mesas (
     CONSTRAINT mesa_municipio_fk FOREIGN KEY ( municipio )
         REFERENCES municipios ( id )
 );
+SELECT concat('mesa #',concat(id,concat(' ',descripcion))) as descripcion, latitud, longitud FROM MESAS;
+select * from mesas;
+select * from usuarios order by rol asc;
+update mesas set latitud='14.085602943187286' , longitud='-87.16213542432806' where id=1;
+update mesas set latitud='15.530276492863548' , longitud='-88.03582577004546' where id=2;
+update mesas set latitud='14.670931786791694' , longitud='-86.21037773026524' where id=3;
+COMMIT;
+--alter table mesas add longitud VARCHAR2(50) DEFAULT('-87.20476353990762') NOT NULL;
+-- 14.085492644831433, -87.20476353990762
 
 CREATE SEQUENCE secuencia_mesas START WITH 1 INCREMENT BY 1;
 
@@ -104,31 +115,58 @@ CREATE SEQUENCE secuencia_mesas START WITH 1 INCREMENT BY 1;
 --VOTOSCOMMIT;
 --------------------------------------------------------
 
-CREATE TABLE VOTOS (
-    id          NUMBER PRIMARY KEY,
-    votante       VARCHAR2(30),
-    candidato     VARCHAR2(30),
-    fecha       DATE DEFAULT to_date(sysdate, 'DD-MM-YYYY'),
-    tipo_candidatura         NUMBER,
-    partido       NUMBER,
-    anho         NUMBER,
-    departamento  NUMBER,
-    municipio NUMBER,
-    mesa         NUMBER,
-     CONSTRAINT votos_usuario_votante_fk FOREIGN KEY ( votante ) REFERENCES usuarios ( id ),
-     CONSTRAINT votos_usuario_candidato_fk FOREIGN KEY ( candidato ) REFERENCES usuarios ( id ),
-     CONSTRAINT votos_partido_fk FOREIGN KEY ( partido ) REFERENCES partidos ( id ),
-     CONSTRAINT votos_departamento_fk FOREIGN KEY ( departamento ) REFERENCES departamentos ( id ),
-     CONSTRAINT votos_municipio_fk FOREIGN KEY ( municipio ) REFERENCES municipios ( id )
-        
+CREATE TABLE votos (
+    id                NUMBER PRIMARY KEY,
+    votante           VARCHAR2(30),
+    candidato         VARCHAR2(30),
+    fecha             DATE DEFAULT to_date(sysdate, 'DD-MM-YYYY'),
+    tipo_candidatura  NUMBER,
+    partido           NUMBER,
+    anho              NUMBER,
+    departamento      NUMBER,
+    municipio         NUMBER,
+    mesa              NUMBER,
+    CONSTRAINT votos_usuario_votante_fk FOREIGN KEY ( votante )
+        REFERENCES usuarios ( id ),
+    CONSTRAINT votos_usuario_candidato_fk FOREIGN KEY ( candidato )
+        REFERENCES usuarios ( id ),
+    CONSTRAINT votos_partido_fk FOREIGN KEY ( partido )
+        REFERENCES partidos ( id ),
+    CONSTRAINT votos_departamento_fk FOREIGN KEY ( departamento )
+        REFERENCES departamentos ( id ),
+    CONSTRAINT votos_municipio_fk FOREIGN KEY ( municipio )
+        REFERENCES municipios ( id )
 );
 
 CREATE SEQUENCE secuencia_votos START WITH 1 INCREMENT BY 1;
 
 COMMIT;
+
+
+--------------------------------------------------------
+--VISTAS
+--------------------------------------------------------
+
+CREATE VIEW vista_resultados_alcaldes AS
+    SELECT
+        usuarios.nombre,
+        municipios.nombre    AS municipio,
+        COUNT(*)             AS total
+    FROM
+             votos
+        INNER JOIN usuarios ON votos.candidato = usuarios.id
+        INNER JOIN municipios ON votos.municipio = municipios.id
+    WHERE
+        votos.tipo_candidatura = 2
+    GROUP BY
+        usuarios.nombre,
+        municipios.nombre
+    ORDER BY
+        municipios.nombre;
 --------------------------------------------------------
 --OTROS
 --------------------------------------------------------
+
 SELECT
     table_name
 FROM

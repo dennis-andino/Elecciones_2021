@@ -1,30 +1,30 @@
 /*Administrador*/
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
-VALUES('0801199318270','pepe','Xavier Lagos','xavielagos@outlook.com','ciudad universitaria','98987655','01-01-1990','userdefault.png',1,1);
+VALUES('0801199318270','pepe','Xavier Lagos','xavielagos@outlook.com','ciudad universitaria','98987655','01-01-1990','imagenes/userdefault.png',1,1);
 
 /*Miembros de mesa 1 (TEG)*/
 
 --presidente
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
-VALUES('0801199318271','pepe','Marco Antonio Andino Lagos','marcossa@outlook.com','ciudad universitaria','98987655','01-01-1990','userdefault.png',2,1);
+VALUES('0801199318271','pepe','Marco Antonio Andino Lagos','marcossa@outlook.com','ciudad universitaria','98987655','01-01-1990','imagenes/userdefault.png',2,1);
 
 --secretario
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
-VALUES('0801199318272','pepe','Eduardo Molina','molinaeduardo@unitec.edu','calle sebastian 2ave','98987654','01-01-1990','userdefault.png',2,1);
+VALUES('0801199318272','pepe','Eduardo Molina','molinaeduardo@unitec.edu','calle sebastian 2ave','98987654','01-01-1990','imagenes/userdefault.pngg',2,1);
 --vocal
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
-VALUES('0801199318273','pepe','Brayan Torres','brayant@unitec.edu','calle sebastian 2ave','98987654','01-01-1990','userdefault.png',2,1);
+VALUES('0801199318273','pepe','Brayan Torres','brayant@unitec.edu','calle sebastian 2ave','98987654','01-01-1990','imagenes/userdefault.png',2,1);
 
 /*Miembros de mesa 2 (Cortes)*/
 --presidente
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
-VALUES('0801199318274','pepe','Moises Hernandez','moisess@unitec.edu',' ave3 14calle col.benito','98987655','01-01-1990','userdefault.png',2,2);
+VALUES('0801199318274','pepe','Moises Hernandez','moisess@unitec.edu',' ave3 14calle col.benito','98987655','01-01-1990','imagenes/userdefault.png',2,2);
 --secretario
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
-VALUES('0801199318275','pepe','Walter Alvarado','walter@unitec.edu','calle sebastian 2ave','98987654','01-01-1990','userdefault.png',2,2);
+VALUES('0801199318275','pepe','Walter Alvarado','walter@unitec.edu','calle sebastian 2ave','98987654','01-01-1990','imagenes/userdefault.png',2,2);
 --vocal
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa)
-VALUES('0801199318276','pepe','Tomas Edison Alvarado','tomas@unitec.edu','calle sebastian 2ave','98987654','01-01-1990','userdefault.png',2,2);
+VALUES('0801199318276','pepe','Tomas Edison Alvarado','tomas@unitec.edu','calle sebastian 2ave','98987654','01-01-1990','imagenes/userdefault.png',2,2);
 commit;
 
 /*Miembros de mesa 3 (Olancho)*/
@@ -182,7 +182,12 @@ INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotogra
 VALUES('0801199318103','pepe','Roberto Jr Perez','rob@unitec.edu','calle sebastian 2ave','98987654','01-01-1990','userdefault.png',3);
 INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,mesa)
 VALUES('0801199318113','pepe','Eduardo Emilia flores','edu@unitec.edu','calle sebastian 2ave','98987654','01-01-1990','userdefault.png',1);
+INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,mesa)
+VALUES('0801199318114','pepe','Willian Alvarado','will@gmail.com','calle sebastian 2ave','98987654','01-01-1990','userdefault.png',1);
 commit;
+
+
+
 
 select * from USUARIOS order by id
 
@@ -223,7 +228,11 @@ select * from PARTIDOS;
 INSERT INTO MESAS(id,descripcion,departamento,municipio,presidente,secretario,vocal) VALUES(secuencia_mesas.nextval,'MESA 1 UNAH TEG',1,1,'0801199318271','0801199318272','0801199318273');
 INSERT INTO MESAS(id,descripcion,departamento,municipio,presidente,secretario,vocal) VALUES(secuencia_mesas.nextval,'MESA 2 UNAH SPS',2,2,'0801199318274','0801199318275','0801199318276');
 INSERT INTO MESAS(id,descripcion,departamento,municipio,presidente,secretario,vocal) VALUES(secuencia_mesas.nextval,'MESA 3 INA Juticalpa',3,3,'0801199318277','0801199318278','0801199318279'); 
+INSERT INTO MESAS(id,descripcion,departamento,municipio,presidente,secretario,vocal) VALUES(secuencia_mesas.nextval,'MESA 4 UNAH Juticalpa',(select departamento from municipios where id=3),3,'0801199318277','0801199318278','0801199318279'); 
+select departamento from municipios where id=3;
+select * from municipios;
 COMMIT;
+ROLLBACK;
 select * from mesas;
 --------------------------------------------------------
 --VOTOS PARA PRESIDENTE (Pendiende correccion de municipio, departamento y mesa segun municipio)

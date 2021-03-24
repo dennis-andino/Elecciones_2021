@@ -1,3 +1,11 @@
+<%@page import="modelo.Papeleta"%>
+<%@page import="java.util.List"%>
+<%@page import="controlador.PartidoController"%>
+<%
+    PartidoController consulta = new PartidoController();
+    List<Papeleta> lista_papeletas = consulta.ObtenerTotalCandidatos();
+%>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -30,35 +38,28 @@
                         <div class="card-body table-responsive">
                             <table id="maintable" class="table table-bordered table-hover">
                                 <thead>
-                                <tr>
-                                    <th>Partido</th>
-                                    <th>Presidentes</th>
-                                    <th>Alcaldes</th>
-                                    <th>Diputados</th>
-                                   
-                                </tr>
+                                    <tr>
+                                        <th>Partido</th>
+                                        <th>Tipo de candidatura</th>
+                                        <th>Total de candidatos</th>
+
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                
-                                        <tr>
-                                            <td><strong><a href="home_admin.jsp?panel=descripcion_papeleta">Nuevas Ideas</a></strong></td>
-                                            <td>5</td>
-                                            <td>4</td>
-                                            <td>50</td>
-                                        </tr>
-                                         <tr>
-                                            <td><strong><a href="home_admin.jsp?panel=descripcion_papeleta">PN</a></strong></td>
-                                            <td>6</td>
-                                            <td>5</td>
-                                            <td>61</td>
-                                        </tr>
-                                         <tr>
-                                            <td><strong><a href="home_admin.jsp?panel=descripcion_papeleta">PL</a></strong></td>
-                                            <td>7</td>
-                                            <td>12</td>
-                                            <td>70</td>
-                                        </tr>
-                                       
+                                    <% if (lista_papeletas.size() >= 1) {
+                                            for (int i = 0; i < lista_papeletas.size(); i++) {
+                                    %>
+
+                                    <tr>
+                                        <td><strong><a href="home_admin.jsp?panel=descripcion_papeleta&partidoid=<%=lista_papeletas.get(i).getId()%>"><%=lista_papeletas.get(i).getPartido()%></a></strong></td>
+                                        <td><%=lista_papeletas.get(i).getTipo_candidatura()%></td>
+                                        <td><%=lista_papeletas.get(i).getTotal()%></td>
+                                    </tr>
+                                    <%  }//cierre del for
+                                    } else {%>
+                                    <tr><td colspan="4" ><br> No se encontraron Registros, Ingresa uno nuevo  :)</td></tr>
+                                            <%}
+                                            %>
                                 </tbody>
                             </table>
                         </div>

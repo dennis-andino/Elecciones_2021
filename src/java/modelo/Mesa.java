@@ -1,8 +1,13 @@
 package modelo;
 public class Mesa {
-     int id,estado;
+     int id,estado,municipio_id;
     String descripcion, presidente,secretario,vocal,latitud,longitud,departamento ,municipio;    
 
+    public Mesa() {
+    }
+
+    
+    
     public Mesa(int id,String descripcion,  String departamento, String municipio,String presidente, String secretario, String vocal, int estado,  String latitud, String longitud) {
         this.id = id;
         this.estado = estado;
@@ -28,6 +33,14 @@ public class Mesa {
         this.vocal = "";
          this.latitud = latitud;
         this.longitud = longitud;
+    }
+
+    public int getMunicipio_id() {
+        return municipio_id;
+    }
+
+    public void setMunicipio_id(int municipio_id) {
+        this.municipio_id = municipio_id;
     }
     
     

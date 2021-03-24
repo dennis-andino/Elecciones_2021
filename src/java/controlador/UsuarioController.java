@@ -2,10 +2,11 @@ package controlador;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.Conexion;
 import modelo.Usuario;
 
@@ -57,18 +58,53 @@ public class UsuarioController {
         }
 
     }
+    public List ObtenerUsuarios(int rol) {
+        String sql = "select id,nombre,direccion,correo,mesa,voto from usuarios where rol="+rol;
+        List<Usuario> tabla = new ArrayList<>();
+        try {
+            con = cn.conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setId_us(rs.getString(1));
+                usuario.setNombre(rs.getString(2));
+                usuario.setDireccion(rs.getString(3));
+                usuario.setCorreo(rs.getString(4));
+                usuario.setMesa(rs.getInt(5));
+               usuario.setVoto(rs.getInt(6));
+                tabla.add(usuario);
+            }
+            rs.close();
+            ps.close();
+            cn.desconectar();
+            return tabla;
+
+        } catch (SQLException e) {
+            System.out.println("error:" + e);
+            return null;
+        }
+
+    } 
+    
 
     public boolean guardar(Usuario usuario) {
-        String sql = "INSERT INTO USUARIOS(id_us,clave,nombre,apellido,correo,pais,latitud,longitud,telefono,Fecha_nac,rtn)values(secUsu.nextval,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa) VALUES(?,?,?,?,?,?,?,?,?,?)";
         int contador;
         try {
             con = cn.conectar();
             ps = con.prepareStatement(sql);
-            ps.setString(1, usuario.getClave());
-            ps.setString(2, usuario.getNombre());
+            ps.setString(1, usuario.getId_us());
+            ps.setString(2, usuario.getClave());
+            ps.setString(3, usuario.getNombre());
             ps.setString(4, usuario.getCorreo());
-            ps.setString(8, usuario.getTelefono());
-            ps.setString(9, usuario.getFecha_nac());
+            ps.setString(5, usuario.getDireccion());
+            ps.setString(6, usuario.getTelefono());
+            ps.setString(7, usuario.getFecha_nac());
+            ps.setString(8, usuario.getFotografia());
+            ps.setInt(9, usuario.getRol());
+            ps.setInt(10, usuario.getMesa());
+            
             contador = ps.executeUpdate();
             cn.desconectar();
             if (contador == 1) {

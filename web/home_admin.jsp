@@ -44,7 +44,7 @@ if(session.getAttribute("nombre")==null){
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<%="imagenes/" + request.getSession().getAttribute("fotografia")%>" class="img-circle elevation-2" alt="User Image">
+                        <img src="<%=request.getSession().getAttribute("fotografia")%>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block"><%=request.getSession().getAttribute("nombre")%></a>
@@ -86,25 +86,25 @@ if(session.getAttribute("nombre")==null){
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="home_admin.jsp?panel=panel_usuarios" class="nav-link">
+                                    <a href="home_admin.jsp?panel=panel_usuarios&rol=1" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Administradores</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="home_admin.jsp?panel=panel_usuarios" class="nav-link">
+                                    <a href="home_admin.jsp?panel=panel_usuarios&rol=3" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Magistrados TSE</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="home_admin.jsp?panel=panel_usuarios" class="nav-link">
+                                    <a href="home_admin.jsp?panel=panel_usuarios&rol=2" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Miembro de mesa</p>
                                     </a>
                                 </li>
                                  <li class="nav-item">
-                                    <a href="home_admin.jsp?panel=panel_usuarios" class="nav-link">
+                                    <a href="home_admin.jsp?panel=panel_usuarios&rol=0" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Electores</p>
                                     </a>

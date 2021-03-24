@@ -40,14 +40,14 @@ public class MesaController {
    
      
    public List ObtenerMesas() {
-        String sql = "select * from mesas";
+        String sql = "select * from vista_todas_mesas";
         List<Mesa> tabla = new ArrayList<>();
         try {
             con = cn.conectar();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Mesa mesa = new Mesa(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9),rs.getString(10));
+                Mesa mesa = new Mesa(rs.getInt(1),rs.getString(2),rs.getString(6),rs.getString(7),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(10),rs.getString(9),rs.getString(8));
                 tabla.add(mesa);
             }
             rs.close();
@@ -61,6 +61,46 @@ public class MesaController {
         }
 
     } 
+   
+    public boolean agregarMesa(Mesa mesa) throws SQLException {
+        /*id            NUMBER PRIMARY KEY,
+    descripcion   VARCHAR2(40),
+    departamento  NUMBER NOT NULL,
+    municipio     NUMBER NOT NULL,
+    presidente    VARCHAR2(30) NOT NULL,
+    secretario    VARCHAR2(30) NOT NULL,
+    vocal         VARCHAR2(30) NOT NULL,
+    estado        NUMBER DEFAULT ( 0 ) NOT NULL,
+    latitud       VARCHAR2(50) NOT NULL,
+    longitud      VARCHAR2(50) NOT NULL,*/
+        String sql = "INSERT INTO MESAS(id,descripcion,departamento,municipio,presidente,secretario,vocal,latitud,longitud) VALUES(secuencia_mesas.nextval,?,(select departamento from municipios where id="+ mesa.getMunicipio_id()+"),?,?,?,?,?,?)";
+        int contador;
+        try {
+            con = cn.conectar();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, mesa.getDescripcion());
+            ps.setInt(2, mesa.getMunicipio_id());
+            ps.setString(3, mesa.getPresidente());
+            ps.setString(4, mesa.getSecretario());
+            ps.setString(5, mesa.getVocal());
+            ps.setString(6, mesa.getLatitud());
+            ps.setString(7, mesa.getLongitud());
+            contador = ps.executeUpdate();
+            if (contador == 1) {
+                System.out.println("Se guardo Correctamente");
+                ps.close();
+                cn.desconectar();
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            ps.close();
+            cn.desconectar();
+            return false;
+        }
+        return false;
+    }
     
     
     

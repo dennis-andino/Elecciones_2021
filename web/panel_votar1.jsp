@@ -1,3 +1,12 @@
+<%@page import="modelo.Papeleta"%>
+<%@page import="java.util.List"%>
+<%@page import="controlador.PapeletaController"%>
+
+<%
+    PapeletaController consulta = new PapeletaController();
+    List<Papeleta> lista_presidentes = consulta.Obtenerpresidentes();
+    List<Papeleta> lista_alcaldes = consulta.ObtenerAlcaldesPorMunicipio(1);
+%>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -8,8 +17,8 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Papeletas</a></li>
-                        <li class="breadcrumb-item active">Descripcion</li>
+                        <li class="breadcrumb-item"><a href="#">Voto</a></li>
+                        <li class="breadcrumb-item active">Papeletas</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -32,29 +41,28 @@
                             <div class="card-body table-responsive">
                                 <table id="maintable" class="table-hover">
                                     <tbody>
+                                        <%
+                                            if (lista_presidentes.size() >= 1) {
+                                                for (int i = 0; i < lista_presidentes.size(); i++) {%>
+                                        <%  if (i == 10) {%>
                                         <tr>
+                                                                                                   <%}%>
                                             <td>
                                                 <div class="card text-center" style="width: 80px;">
-                                                    <img src="<%="imagenes/" + request.getSession().getAttribute("fotografia")%>" class="card-img"> 
-                                                    <label>Nombre<br>5</label>
+                                                    <img src="<%=lista_presidentes.get(i).getFotografia()%>" class="card-img"> 
+                                                    <label><%=lista_presidentes.get(i).getNombre()%><br><%=lista_presidentes.get(i).getCasilla()%></label>
                                                 </div>
-                                    <center><input type="radio" name="presidente" value="10"></center>
+
+                                    <center><input type="radio" name="presidente" value="<%=lista_presidentes.get(i).getId_candidato()%>" required></center>
                                     </td>
-                                    <td>
-                                        <div class="card text-center" style="width: 80px;">
-                                            <img src="<%="imagenes/" + request.getSession().getAttribute("fotografia")%>" class="card-img"> 
-                                             <label>Nombre<br>5</label>
-                                        </div>
-                                    <center><input type="radio" name="presidente" value="9"></center>
-                                    </td>
-                                    <td>
-                                        <div class="card text-center" style="width: 80px;">
-                                            <img src="<%="imagenes/" + request.getSession().getAttribute("fotografia")%>" class="card-img"> 
-                                             <label>Nombre<br>5</label>
-                                        </div>
-                                    <center><input type="radio" name="presidente" value="8"></center>
-                                    </td>
+                                    <%if (i == 10) {%>
                                     </tr>
+                                    <%}%>
+                                    <%}
+                                    } else {%>
+                                    <tr><td colspan="4" ><br> No se encontraron Registros, Ingresa uno nuevo  :)</td></tr>
+                                            <%}
+                                            %>
                                     </tbody>
                                 </table>
                             </div>
@@ -73,45 +81,41 @@
                             <div class="card-body table-responsive">
                                 <table id="maintable" class="table-hover">
                                     <tbody>
+                                        <%
+                                            if (lista_alcaldes.size() >= 1) {
+                                                for (int i = 0; i < lista_alcaldes.size(); i++) {%>
+                                        <%if (i == 10) {%>
                                         <tr>
+                                            <%}%>
                                             <td>
                                                 <div class="card text-center" style="width: 80px;">
-                                                    <img src="<%="imagenes/" + request.getSession().getAttribute("fotografia")%>" class="card-img"> 
-                                                    <label>Nombre<br>5</label>
+                                                    <img src="<%=lista_alcaldes.get(i).getFotografia()%>" class="card-img"> 
+                                                    <label><%=lista_alcaldes.get(i).getNombre()%><br><%=lista_alcaldes.get(i).getCasilla()%></label>
                                                 </div>
-                                    <center><input type="radio" name="alcalde" value="5"></center>
+                                    <center><input type="radio" name="alcalde" value="<%=lista_alcaldes.get(i).getId_candidato()%>" required></center>
                                     </td>
-                                    <td>
-                                        <div class="card text-center" style="width: 80px;">
-                                            <img src="<%="imagenes/" + request.getSession().getAttribute("fotografia")%>" class="card-img"> 
-                                            <label>Nombre<br>5</label>
-                                        </div>
-                                    <center><input type="radio" name="alcalde" value="6"></center>
-                                    </td>
-                                    <td>
-                                        <div class="card text-center" style="width: 80px;">
-                                            <img src="<%="imagenes/" + request.getSession().getAttribute("fotografia")%>" class="card-img"> 
-                                           <label>Nombre<br>5</label>
-                                        </div>
-                                    <center><input type="radio" name="alcalde" value="7"></center>
-                                    </td>
-                                  
-                                  
+                                    <%if (i == 10) {%>
                                     </tr>
+                                    <%}%>
+                                    <%}
+                                    } else {%>
+                                    <tr><td colspan="4" ><br> No se encontraron Registros, Ingresa uno nuevo  :)</td></tr>
+                                            <%}
+                                            %>
                                     </tbody>
                                 </table>
                             </div>
                             <!--fin-->
-                              <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Guardar y continuar </button>
-                                </div>
-                             </form>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Guardar y continuar </button>
+                            </div>
+                            
                         </div>
                     </div>
                     <!-- /.col-md-6 -->
                 </div>
                 <!-- /.card -->
-           
+</form>
         </div>
         <!-- /.row -->
     </div><!-- /.container-fluid -->

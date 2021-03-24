@@ -35,21 +35,21 @@
                                         <tr>
                                             <td>
                                                 <div class="card text-center" style="width: 80px;">
-                                                    <img src="<%="imagenes/" + request.getSession().getAttribute("fotografia")%>" class="card-img"> 
+                                                    <img src="<%=request.getSession().getAttribute("fotografia")%>" class="card-img"> 
                                                     <label>Nombre<br>5</label>
                                                 </div>
                                     <center><input type="checkbox" name="alcalde" value="5"></center>
                                     </td>
                                     <td>
                                         <div class="card text-center" style="width: 80px;">
-                                            <img src="<%="imagenes/" + request.getSession().getAttribute("fotografia")%>" class="card-img"> 
+                                            <img src="<%= request.getSession().getAttribute("fotografia")%>" class="card-img"> 
                                             <label>Nombre<br>5</label>
                                         </div>
                                     <center><input type="checkbox" name="alcalde" value="6"></center>
                                     </td>
                                     <td>
                                         <div class="card text-center" style="width: 80px;">
-                                            <img src="<%="imagenes/" + request.getSession().getAttribute("fotografia")%>" class="card-img"> 
+                                            <img src="<%=request.getSession().getAttribute("fotografia")%>" class="card-img"> 
                                            <label>Nombre<br>5</label>
                                         </div>
                                     <center><input type="checkbox" name="alcalde" value="7"></center>

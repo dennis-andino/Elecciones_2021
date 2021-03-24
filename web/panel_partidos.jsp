@@ -5,7 +5,6 @@
     PartidoController consulta = new PartidoController();
     List<Partido> lista_partidos = consulta.ObtenerPartidos();
 %>
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -36,14 +35,13 @@
                             <h5 class="m-0">Agregar Nuevo Partido</h5>
                         </div>
                         <div class="card-header">
-                            <form action="<?=base_url.'database/backUp'?>" method="post">
+                            <form action="DAOpartidos.jsp?accion=nuevo" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="form-group col-1"></div>
-                                    <div class="form-group col-3"><input type="text" class="form-control form-control-sm" name="" placeholder="Logo URL" required></div>
-                                    <div class="form-group col-3"><input type="text" class="form-control form-control-sm" name="" placeholder="Nombre" required></div>
-                                    <div class="form-group col-3"><input type="text" class="form-control form-control-sm" name="" placeholder="Descripción" required></div>
-
-                                    <div class="form-group col-2"><button type="submit" class="btn btn-warning btn-sm ">Agregar</button></div>
+                                    <div class="form-group col-3"><input type="file" class="form-control form-control-sm" name="logo"  required></div>
+                                    <div class="form-group col-3"><input type="text" class="form-control form-control-sm" name="nombre" placeholder="Nombre" required></div>
+                                    <div class="form-group col-3"><input type="text" class="form-control form-control-sm" name="descripcion" placeholder="Descripción" required></div>
+                                    <div class="form-group col-2"><button type="submit" class="btn btn-warning btn-sm">Agregar</button></div>
                                 </div>
                             </form>
                         </div>
@@ -63,15 +61,15 @@
                                             for (int i = 0; i < lista_partidos.size(); i++) {
                                     %>
                                     <tr>
-
                                         <td><strong><%=lista_partidos.get(i).getId()%></strong></td>
                                         <td><img src="<%=lista_partidos.get(i).getLogo()%>" width="80" height="40"></td>
                                         <td><strong><%=lista_partidos.get(i).getNombre() %></strong></td>
                                         <td><%=lista_partidos.get(i).getDescripcion() %></td>
                                         <td>
-                                            <a role="button" class="btn btn-info btn-sm" href="#">Editar</a>
-                                            <form method="post" action="#" style="display: inline-block;">
-                                                <button type="submit" class="btn btn-danger btn-sm" >Eliminar</button>
+                                            <button type="button" value="" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
+                                            <form method="post" action="DAOpartidos.jsp" style="display: inline-block;">
+                                                  <input type="hidden" name="idpartido" value="<%=lista_partidos.get(i).getId()%>">
+                                                <button type="submit" class="btn btn-danger btn-sm"  name="accion" value="eliminar"><i class="far fa-trash-alt"></i></button>
                                             </form>
                                         </td>
                                     </tr>
@@ -80,9 +78,6 @@
                                     } else {%>
                                     <tr><td colspan="4" ><br> No se encontraron Registros, Ingresa uno nuevo  :)</td></tr>
                                             <%}%>
-
-       
-
                                 </tbody>
                             </table>
                         </div>

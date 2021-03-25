@@ -115,7 +115,6 @@ public class PapeletaController {
         }
 
     }
-    
 
     public List ObtenerDiputados(int partido_id) {
         String sql = "select usuarios.fotografia, usuarios.nombre, papeletas.casilla from papeletas inner join usuarios on papeletas.candidato=usuarios.id where papeletas.tipo_candidatura=3 and papeletas.partido=" + partido_id;
@@ -138,9 +137,9 @@ public class PapeletaController {
             return null;
         }
     }
-    
-     public List ObtenerDiputadosPorMunicipio(int municipio) {
-        String sql = "select usuarios.id,usuarios.fotografia, usuarios.nombre, papeletas.casilla from papeletas inner join usuarios on papeletas.candidato=usuarios.id where papeletas.tipo_candidatura=3 and papeletas.municipio=" + municipio;
+
+    public List ObtenerDiputadosPorDepartamento(int departamento) {
+        String sql = "select usuarios.id,usuarios.fotografia, usuarios.nombre, papeletas.casilla from papeletas inner join usuarios on papeletas.candidato=usuarios.id where papeletas.tipo_candidatura=3 and papeletas.departamento=" + departamento;
         List<Papeleta> tabla = new ArrayList<>();
         try {
             con = cn.conectar();
@@ -209,6 +208,56 @@ public class PapeletaController {
         }
         ps.close();
         cn.desconectar();
+        return false;
+    }
+
+    public boolean votar(String[] candidatos, String id_votante, int id_dep, int id_mun, int mesa) throws SQLException {
+        int tipo_cantidatura;
+        int contador = 0;
+        String sql = "INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa)"
+                + "VALUES(secuencia_votos.nextval,?,?,?,(select partido from papeletas where candidato=?),2021,?,?,?)";
+        try {
+            con = cn.conectar();
+            for (int i = 0; i < candidatos.length; i++) {
+                switch (i) {
+                    case 0:
+                        tipo_cantidatura = 1; //presidente
+                        break;
+                    case 1:
+                        tipo_cantidatura = 2; //alcalde
+                        break;
+                    default:
+                        tipo_cantidatura = 3; //diputado
+                        break;
+                }
+
+                ps = con.prepareStatement(sql);
+                ps.setString(1, id_votante);
+                ps.setString(2, candidatos[i]);
+                ps.setInt(3, tipo_cantidatura);
+                ps.setString(4, candidatos[i]);
+                ps.setInt(5, id_dep);
+                ps.setInt(6, id_mun);
+                ps.setInt(7, mesa);
+                contador += ps.executeUpdate();
+            }
+            if (contador == 5) {
+                sql = "update usuarios set voto=0 where id=?";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, id_votante);
+                ps.executeUpdate();
+                System.out.println("Se guardo Correctamente");
+                ps.close();
+                cn.desconectar();
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            ps.close();
+            cn.desconectar();
+            return false;
+        }
         return false;
     }
 

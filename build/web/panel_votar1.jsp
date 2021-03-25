@@ -3,9 +3,10 @@
 <%@page import="controlador.PapeletaController"%>
 
 <%
+    int id_mun = Integer.parseInt(request.getSession().getAttribute("municipio").toString());
     PapeletaController consulta = new PapeletaController();
     List<Papeleta> lista_presidentes = consulta.Obtenerpresidentes();
-    List<Papeleta> lista_alcaldes = consulta.ObtenerAlcaldesPorMunicipio(1);
+    List<Papeleta> lista_alcaldes = consulta.ObtenerAlcaldesPorMunicipio(id_mun);
 %>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -18,7 +19,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Voto</a></li>
-                        <li class="breadcrumb-item active">Papeletas</li>
+                        <li class="breadcrumb-item active">papeleta 1</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -48,7 +49,7 @@
                                         <tr>
                                                                                                    <%}%>
                                             <td>
-                                                <div class="card text-center" style="width: 80px;">
+                                                <div class="card text-center" style="width: 100px;">
                                                     <img src="<%=lista_presidentes.get(i).getFotografia()%>" class="card-img"> 
                                                     <label><%=lista_presidentes.get(i).getNombre()%><br><%=lista_presidentes.get(i).getCasilla()%></label>
                                                 </div>
@@ -88,7 +89,7 @@
                                         <tr>
                                             <%}%>
                                             <td>
-                                                <div class="card text-center" style="width: 80px;">
+                                                <div class="card text-center" style="width: 100px;">
                                                     <img src="<%=lista_alcaldes.get(i).getFotografia()%>" class="card-img"> 
                                                     <label><%=lista_alcaldes.get(i).getNombre()%><br><%=lista_alcaldes.get(i).getCasilla()%></label>
                                                 </div>

@@ -17,7 +17,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?=base_url.'home/student'?>" class="nav-link">Inicio</a>
+                    <a href="" class="nav-link">Inicio</a>
                 </li>
             </ul>
             <!-- Right navbar links -->
@@ -38,7 +38,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<%="imagenes/" + request.getSession().getAttribute("fotografia")%>" class="img-circle elevation-2" alt="User Image">
+                        <img src="<%=request.getSession().getAttribute("fotografia")%>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block"><%=request.getSession().getAttribute("nombre")%></a>
@@ -55,12 +55,16 @@
                                 <p>Inicio</p>
                             </a>
                         </li> 
+                        <%
+                        if(request.getSession().getAttribute("voto")=="1"){
+                        %>
                         <li class="nav-item">
-                            <a href="home_elector.jsp?panel=panel_votar1" class="nav-link">
+                            <a href="home_admin.jsp?panel=panel_votar1" class="nav-link">
                                 <i class="nav-icon fas fa-person-booth"></i>
                                 <p>Votar</p>
                             </a>
                         </li>
+                        <%}%>
                         <li class="nav-item">
                             <a href="salir.jsp" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>

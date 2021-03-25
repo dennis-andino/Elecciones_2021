@@ -9,26 +9,17 @@ clave:root
 ------------------------------------------
 */
 
---------------------------------------------------------
---  USUARIOS
---------------------------------------------------------
-CREATE TABLE usuarios (
-    id          VARCHAR2(30) PRIMARY KEY,
-    clave       VARCHAR2(500),
-    nombre      VARCHAR2(40),
-    correo      VARCHAR2(100) DEFAULT ( 'empty' ),
-    direccion   VARCHAR2(500) NOT NULL,
-    telefono    VARCHAR2(30),
-    fecha_nac   VARCHAR2(30),
-    fotografia  VARCHAR2(200) DEFAULT ( 'userdefault.png' ),
-    rol         NUMBER DEFAULT ( 0 ), /* 0-> elector , 1->admin, 2->miembro mesa, 3->magistrado*/
-    mesa        NUMBER,
-    voto        NUMBER DEFAULT ( 0 ) NOT NULL
-);
 
+select * from usuarios;
+select * from mesas;
+
+CREATE VIEW vista_login AS
+select U.id,U.nombre,U.fotografia,U.rol,U.mesa,U.voto,M.departamento,M.municipio,U.clave,m.estado,m.descripcion from usuarios U inner join mesas M on U.mesa=M.id;
 COMMIT;
 
+select * from vista_login;
 
+select id,nombre,voto from vista_login where mesa=1;
 
 --------------------------------------------------------
 --  TIPOS_CANDIDATURA
@@ -140,8 +131,29 @@ CREATE TABLE mesas (
 );
 CREATE SEQUENCE secuencia_mesas START WITH 1 INCREMENT BY 1;
 
---update mesas set estado=0 where id>=1;
+--update mesas set estado=0 where id=1;
 --ALTER TABLE MESAS MODIFY estado NUMBER DEFAULT ( 0 );
+
+--------------------------------------------------------
+--  USUARIOS
+--------------------------------------------------------
+CREATE TABLE usuarios (
+    id          VARCHAR2(30) PRIMARY KEY,
+    clave       VARCHAR2(500),
+    nombre      VARCHAR2(40),
+    correo      VARCHAR2(100) DEFAULT ( 'empty' ),
+    direccion   VARCHAR2(500) NOT NULL,
+    telefono    VARCHAR2(30),
+    fecha_nac   VARCHAR2(30),
+    fotografia  VARCHAR2(200) DEFAULT ( 'userdefault.png' ),
+    rol         NUMBER DEFAULT ( 0 ), /* 0-> elector , 1->admin, 2->miembro mesa, 3->magistrado*/
+    mesa        NUMBER,
+    voto        NUMBER DEFAULT ( 0 ) NOT NULL,
+    CONSTRAINT usuario_mesa_fk FOREIGN KEY ( mesa )REFERENCES mesas ( id )
+);
+
+COMMIT;
+
 
 SELECT
     concat('mesa #', concat(id, concat(' ', descripcion))) AS descripcion,latitud,longitud FROM mesas;
@@ -181,14 +193,9 @@ CREATE TABLE papeletas (
 
 CREATE SEQUENCE secuencia_papaletas START WITH 1 INCREMENT BY 1;
 
-ALTER TABLE papeletas ADD  municipio NUMBER DEFAULT ( 0 ) NOT NULL;
-ALTER TABLE papeletas ADD  departamento NUMBER DEFAULT ( 0 ) NOT NULL;
 
-select * from papeletas;
-select * from usuarios;
-update usuarios set fotografia='imagenes/userdefault.png' where id='0801199318114';
-update usuarios set fotografia='imagenes/userdefault.png' where id>=1;
 
+select usuarios.id,usuarios.fotografia, usuarios.nombre, papeletas.casilla from papeletas inner join usuarios on papeletas.candidato=usuarios.id where papeletas.tipo_candidatura=2 and papeletas.municipio=1;
 --presidentes
 select usuarios.fotografia, usuarios.nombre, papeletas.casilla from papeletas inner join
 usuarios on papeletas.candidato=usuarios.id where papeletas.tipo_candidatura=1 and papeletas.partido=1;
@@ -206,95 +213,8 @@ COMMIT;
 --------------------------------------------------------
 --PAPELETAS
 --------------------------------------------------------
---------------------partido nacional 1
---presidente 1
 
-INSERT INTO papeletas VALUES (
-    secuencia_papaletas.NEXTVAL,
-    '0801199318282',
-    1,
-    1,
-    1
-);
---alcaldes 2
 
-INSERT INTO papeletas VALUES (
-    secuencia_papaletas.NEXTVAL,
-    '0801199318285',
-    1,
-    2,
-    1
-);
-
-INSERT INTO papeletas VALUES (
-    secuencia_papaletas.NEXTVAL,
-    '0801199318286',
-    1,
-    2,
-    2
-);
---diputados 3
---pendientes
-
---------------------partido liberal 2
---presidente 1
-
-INSERT INTO papeletas VALUES (
-    secuencia_papaletas.NEXTVAL,
-    '0801199318283',
-    2,
-    1,
-    1
-);
---alcaldes 2
-
-INSERT INTO papeletas VALUES (
-    secuencia_papaletas.NEXTVAL,
-    '0801199318287',
-    2,
-    2,
-    1
-);
-
-INSERT INTO papeletas VALUES (
-    secuencia_papaletas.NEXTVAL,
-    '0801199318288',
-    2,
-    2,
-    2
-);
---diputados 3
---pendientes
-
---------------------partido libre 3
---presidente 1
-
-INSERT INTO papeletas VALUES (
-    secuencia_papaletas.NEXTVAL,
-    '0801199318284',
-    3,
-    1,
-    1
-);
---alcaldes 2
-
-INSERT INTO papeletas VALUES (
-    secuencia_papaletas.NEXTVAL,
-    '0801199318289',
-    3,
-    2,
-    1
-);
-
-INSERT INTO papeletas VALUES (
-    secuencia_papaletas.NEXTVAL,
-    '0801199318290',
-    3,
-    2,
-    2
-);
---diputados 3
---pendientes
 
 COMMIT;
 
@@ -323,6 +243,8 @@ update votos set partido=3 where candidato='0801199318284'
 
 select * from partidos;
 select * from papeletas;
+
+describe votos;
 --------------------------------------------------------
 --VOTOS
 --------------------------------------------------------
@@ -349,8 +271,30 @@ CREATE TABLE votos (
     CONSTRAINT votos_municipio_fk FOREIGN KEY ( municipio )
         REFERENCES municipios ( id )
 );
-SELECT
-    partido,
+CREATE SEQUENCE secuencia_votos START WITH 1 INCREMENT BY 1;
+COMMIT;
+
+select m.nombre as municipio,u.nombre as candidato, count(*) as total from votos v inner join usuarios u on v.candidato=u.id
+inner join municipios m on v.municipio=m.id where tipo_candidatura=2 group by m.nombre,u.nombre
+
+select d.nombre as departamento,u.nombre as candidato, count(*) as total from votos v inner join usuarios u on v.candidato=u.id
+inner join departamentos d on v.departamento=d.id where tipo_candidatura=3 group by d.nombre,u.nombre
+
+select * from votos where tipo_candidatura=1 and departamento=1;
+
+select U.nombre,count(U.nombre) as total from votos V inner join usuarios U on V.candidato=U.id  where V.tipo_candidatura=1 group by U.nombre ;
+
+COMMIT;
+
+
+INSERT INTO VOTOS(id,votante,candidato,tipo_candidatura,partido,anho,departamento,municipio,mesa)
+VALUES(secuencia_votos.nextval,'0801199318270','0801199318293',1,(select partido from papeletas where candidato='0801199318293'),2020,1,1,1);
+
+
+
+select * from votos
+SELECT * FROM PAPELETAS;
+SELECT partido,
     tipo_candidatura,
     COUNT(tipo_candidatura) AS total
 FROM
@@ -366,7 +310,7 @@ SELECT
 FROM
     votos;
 
-CREATE SEQUENCE secuencia_votos START WITH 1 INCREMENT BY 1;
+
 
 COMMIT;
 
@@ -433,6 +377,24 @@ CREATE VIEW vista_todas_mesas AS
         mesas.id ASC
     
         select * from vista_todas_mesas;
+        
+        
+        CREATE VIEW vista_presidente_dep AS
+    SELECT
+        concat(d.nombre, concat('(', concat(u.nombre, ')')))                     AS departamento,
+        COUNT(*)                                                              AS total
+    FROM
+             votos v
+        INNER JOIN usuarios       u ON v.candidato = u.id
+        INNER JOIN departamentos  d ON v.departamento = d.id
+    WHERE
+        v.tipo_candidatura = 1
+    GROUP BY
+        u.nombre,
+        d.nombre
+    ORDER BY
+        d.nombre,
+        total DESC;
 --------------------------------------------------------
 --OTROS
 --------------------------------------------------------
@@ -448,3 +410,7 @@ FROM
     all_tab_columns
 WHERE
     table_name = 'USUARIOS';
+    
+    ALTER TABLE papeletas ADD  municipio NUMBER DEFAULT ( 0 ) NOT NULL;
+ALTER TABLE papeletas ADD  departamento NUMBER DEFAULT ( 0 ) NOT NULL;
+ALTER TABLE usuarios ADD CONSTRAINT usuario_mesa_fk FOREIGN KEY ( mesa )REFERENCES mesas ( id );

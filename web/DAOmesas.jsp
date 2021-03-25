@@ -31,8 +31,27 @@
                  out.print("<script>alert(\"No pudimos eliminar el usuario, verifica la informacion proporcionada. ! \");window.location.href='home_admin.jsp?panel=descripcion_papeleta&partidoid=" + papeleta.getIdpartido() + "';</script>");
             }*/
             break;
+        
+        case "abrir":
+            int id_mesa = Integer.parseInt(request.getParameter("id")) ;
+             if (control.cambiarEstado(id_mesa,1)) {
+                 request.getSession().setAttribute("estado_mesa", 1);
+                out.print("<script>alert(\"Mesa aperturada exitosamente ! \");window.location.href='home_miembro.jsp?panel=panel_mesa';</script>");
+            } else {
+                out.print("<script>alert(\"No se pudo aperturar la mesa :C ! \");window.location.href='home_miembro.jsp?panel=panel_mesa';</script>");
+            }
+            break;
+        case "cerrar":
+         int id_mes = Integer.parseInt(request.getParameter("id")) ;
+             if (control.cambiarEstado(id_mes,0)) {
+                 request.getSession().setAttribute("estado_mesa", 0);
+                out.print("<script>alert(\"Mesa cerrada satisfactoriamente ! \");window.location.href='home_miembro.jsp?panel=panel_mesa';</script>");
+            } else {
+                out.print("<script>alert(\"No se pudo cerrar la mesa :C ! \");window.location.href='home_miembro.jsp?panel=panel_mesa';</script>");
+            }
+            break;
         default:
-            out.print("<script>alert(\"Upps Algo Salio mal ! no se puedo completar la accion solicitada ! \");window.location.href='home_admin.jsp?panel=panel_partidos';</script>");
+            out.print("<script>alert(\"Upps Algo Salio mal ! no se puedo completar la accion solicitada ! \");window.location.href='index.php';</script>");
             break;
     }
 %>

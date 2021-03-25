@@ -55,26 +55,26 @@
                                 <p>Inicio</p>
                             </a>
                         </li>    
-                        <li class="nav-item">
+                       <li class="nav-item">
                             <a href="#" class="nav-link">
                                <i class="nav-icon fas fa-poll"></i>
                                 <p>Resultados Electorales <i class="fas fa-angle-left right"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="home_magistrado.jsp?panel=panel_resultados" class="nav-link">
+                                    <a href="home_magistrado.jsp?panel=estadisticas_presidente" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Presidentes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="home_magistrado.jsp?panel=panel_resultados" class="nav-link">
+                                    <a href="home_magistrado.jsp?panel=estadisticas_alcalde" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Alcaldes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="home_magistrado.jsp?panel=panel_resultados" class="nav-link">
+                                    <a href="home_magistrado.jsp?panel=estadisticas_diputado" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Diputados</p>
                                     </a>
@@ -82,23 +82,21 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="home_magistrado.jsp?panel=panel_partidos" class="nav-link">
-                                <i class="nav-icon fab fa-old-republic"></i>
-                                <p>Resultados por Mesa</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="home_magistrado.jsp?panel=panel_papeletas" class="nav-link">
                                 <i class="nav-icon fas fa-vote-yea"></i>
                                 <p>Estadisticas</p>
                             </a>
                         </li>                    
+                         <%
+                        if(request.getSession().getAttribute("voto")=="1"){
+                        %>
                         <li class="nav-item">
-                            <a href="home_magistrado.jsp?panel=panel_votar1" class="nav-link">
+                            <a href="home_admin.jsp?panel=panel_votar1" class="nav-link">
                                 <i class="nav-icon fas fa-person-booth"></i>
                                 <p>Votar</p>
                             </a>
                         </li>
+                        <%}%>
                         <li class="nav-item">
                             <a href="salir.jsp" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>

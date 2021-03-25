@@ -63,16 +63,6 @@ public class MesaController {
     } 
    
     public boolean agregarMesa(Mesa mesa) throws SQLException {
-        /*id            NUMBER PRIMARY KEY,
-    descripcion   VARCHAR2(40),
-    departamento  NUMBER NOT NULL,
-    municipio     NUMBER NOT NULL,
-    presidente    VARCHAR2(30) NOT NULL,
-    secretario    VARCHAR2(30) NOT NULL,
-    vocal         VARCHAR2(30) NOT NULL,
-    estado        NUMBER DEFAULT ( 0 ) NOT NULL,
-    latitud       VARCHAR2(50) NOT NULL,
-    longitud      VARCHAR2(50) NOT NULL,*/
         String sql = "INSERT INTO MESAS(id,descripcion,departamento,municipio,presidente,secretario,vocal,latitud,longitud) VALUES(secuencia_mesas.nextval,?,(select departamento from municipios where id="+ mesa.getMunicipio_id()+"),?,?,?,?,?,?)";
         int contador;
         try {
@@ -88,6 +78,31 @@ public class MesaController {
             contador = ps.executeUpdate();
             if (contador == 1) {
                 System.out.println("Se guardo Correctamente");
+                ps.close();
+                cn.desconectar();
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            ps.close();
+            cn.desconectar();
+            return false;
+        }
+        return false;
+    }
+    
+    public boolean cambiarEstado(int id_mesa,int estado) throws SQLException {
+        String sql = "update mesas set estado=? where id=?";
+        int contador;
+        try {
+            con = cn.conectar();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, estado);
+            ps.setInt(2, id_mesa);
+            contador = ps.executeUpdate();
+            if (contador == 1) {
+                System.out.println("Se cambio estado exitosamente");
                 ps.close();
                 cn.desconectar();
                 return true;

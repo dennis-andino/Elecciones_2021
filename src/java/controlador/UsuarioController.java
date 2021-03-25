@@ -21,8 +21,7 @@ public class UsuarioController {
     ResultSet rs;
 
     public Usuario validar(Usuario us) {
-        String sql = "SELECT * FROM USUARIOS WHERE id=? AND clave=?";
-
+        String sql = "select * from vista_login WHERE id=? AND clave=?";
         int resultado = 0;
         try {
             con = cn.conectar();
@@ -34,12 +33,16 @@ public class UsuarioController {
             while (rs.next()) {
                 resultado++;
                 us.setId_us(rs.getString(1));
-                us.setNombre(rs.getString(3));
-                us.setCorreo(rs.getString(4));
-                us.setTelefono(rs.getString(6));
-                us.setFecha_nac(rs.getString(7));
-                us.setRol(rs.getInt(9));
-                us.setFotografia(rs.getString(8));         
+                us.setNombre(rs.getString(2));
+                us.setFotografia(rs.getString(3));
+                us.setRol(rs.getInt(4));
+                us.setMesa(rs.getInt(5));
+                us.setVoto(rs.getInt(6));
+                us.setId_departamento(rs.getInt(7));
+                us.setId_municipio(rs.getInt(8));
+                 us.setEstadoMesa(rs.getInt(10));
+                 us.setDescripcionMesa(rs.getString(11));
+                 
             }
             rs.close();
             ps.close();
@@ -53,13 +56,14 @@ public class UsuarioController {
             }
 
         } catch (SQLException e) {
-             System.out.println("se disparo el catch:" + resultado);
+            System.out.println("se disparo el catch: \n" + e.getMessage());
             return null;
         }
 
     }
+
     public List ObtenerUsuarios(int rol) {
-        String sql = "select id,nombre,direccion,correo,mesa,voto from usuarios where rol="+rol;
+        String sql = "select id,nombre,direccion,correo,mesa,voto from usuarios where rol=" + rol;
         List<Usuario> tabla = new ArrayList<>();
         try {
             con = cn.conectar();
@@ -72,7 +76,7 @@ public class UsuarioController {
                 usuario.setDireccion(rs.getString(3));
                 usuario.setCorreo(rs.getString(4));
                 usuario.setMesa(rs.getInt(5));
-               usuario.setVoto(rs.getInt(6));
+                usuario.setVoto(rs.getInt(6));
                 tabla.add(usuario);
             }
             rs.close();
@@ -85,8 +89,33 @@ public class UsuarioController {
             return null;
         }
 
-    } 
+    }
     
+     public List ObtenerUsuariosPorMesa(int mesa) {
+        String sql = "select id,nombre,voto from vista_login where mesa="+mesa;
+        List<Usuario> tabla = new ArrayList<>();
+        try {
+            con = cn.conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setId_us(rs.getString(1));
+                usuario.setNombre(rs.getString(2));
+                usuario.setVoto(rs.getInt(3));
+                tabla.add(usuario);
+            }
+            rs.close();
+            ps.close();
+            cn.desconectar();
+            return tabla;
+
+        } catch (SQLException e) {
+            System.out.println("error:" + e);
+            return null;
+        }
+
+    }
 
     public boolean guardar(Usuario usuario) {
         String sql = "INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotografia,rol,mesa) VALUES(?,?,?,?,?,?,?,?,?,?)";
@@ -104,7 +133,7 @@ public class UsuarioController {
             ps.setString(8, usuario.getFotografia());
             ps.setInt(9, usuario.getRol());
             ps.setInt(10, usuario.getMesa());
-            
+
             contador = ps.executeUpdate();
             cn.desconectar();
             if (contador == 1) {

@@ -121,6 +121,9 @@ INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotogra
 VALUES('0801199318292','pepe','Juan Diego Zelaya','juand@outlook.com','14 ave res. Villanova','98987654','01-01-1990','userdefault.png',0,2);
 commit;
 
+select * from papeletas where tipo_candidatura=3;
+select * from usuarios where id='0801199318293';
+
 
 --------------------------------------------------------
 --CANDIDATOS A DIPUTADO PARTIDO LIBERAL
@@ -234,6 +237,45 @@ select * from municipios;
 COMMIT;
 ROLLBACK;
 select * from mesas;
+
+
+--------------------------------------------------------
+--PAPELETAS
+--------------------------------------------------------
+--------------------partido nacional 1
+--presidente 1
+
+INSERT INTO papeletas(id,candidato,partido,tipo_candidatura,casilla,municipio,departamento) VALUES (secuencia_papaletas.NEXTVAL,'0801199318282',1,1,1,1,1);
+--alcaldes 2
+INSERT INTO papeletas(id,candidato,partido,tipo_candidatura,casilla,municipio,departamento) VALUES (secuencia_papaletas.NEXTVAL,'0801199318285',1,2,1,1,1);
+INSERT INTO papeletas(id,candidato,partido,tipo_candidatura,casilla,municipio,departamento)VALUES (secuencia_papaletas.NEXTVAL,'0801199318286',1,2,2,2,2);
+--diputados 3
+INSERT INTO papeletas(id,candidato,partido,tipo_candidatura,casilla,municipio,departamento) VALUES (secuencia_papaletas.NEXTVAL,'0801199318291',1,3,1,1,1);
+INSERT INTO papeletas(id,candidato,partido,tipo_candidatura,casilla,municipio,departamento)VALUES (secuencia_papaletas.NEXTVAL,'0801199318292',1,3,2,2,2);
+COMMIT;
+
+--------------------partido liberal 2
+--presidente 1
+
+INSERT INTO papeletas VALUES (secuencia_papaletas.NEXTVAL,'0801199318283',2,1,1);
+--alcaldes 2
+INSERT INTO papeletas VALUES (secuencia_papaletas.NEXTVAL,'0801199318287',2,2,1);
+INSERT INTO papeletas VALUES (secuencia_papaletas.NEXTVAL,'0801199318288',2,2,2);
+--diputados 3
+INSERT INTO papeletas(id,candidato,partido,tipo_candidatura,casilla,municipio,departamento) VALUES (secuencia_papaletas.NEXTVAL,'0801199318293',2,3,1,1,1);--FRANCISCO MORAZAN
+INSERT INTO papeletas(id,candidato,partido,tipo_candidatura,casilla,municipio,departamento)VALUES (secuencia_papaletas.NEXTVAL,'0801199318294',2,3,2,2,2);--CORTES
+COMMIT;
+
+--------------------partido libre 3
+--presidente 1
+INSERT INTO papeletas VALUES (secuencia_papaletas.NEXTVAL,'0801199318284',3,1,1);
+--alcaldes 2
+INSERT INTO papeletas VALUES (secuencia_papaletas.NEXTVAL,'0801199318289',3,2,1);
+INSERT INTO papeletas VALUES (secuencia_papaletas.NEXTVAL,'0801199318290',3,2,2);
+--diputados 3
+INSERT INTO papeletas(id,candidato,partido,tipo_candidatura,casilla,municipio,departamento) VALUES (secuencia_papaletas.NEXTVAL,'0801199318295',3,3,1,1,1);--FRANCISCO MORAZAN
+INSERT INTO papeletas(id,candidato,partido,tipo_candidatura,casilla,municipio,departamento)VALUES (secuencia_papaletas.NEXTVAL,'0801199318296',3,3,2,2,2);--CORTES
+
 --------------------------------------------------------
 --VOTOS PARA PRESIDENTE (Pendiende correccion de municipio, departamento y mesa segun municipio)
 -------------------------------------------------------
@@ -313,6 +355,8 @@ select * from vista_resultados_alcaldes;
 SELECT usuarios.nombre,votos.municipio ,count(usuarios.nombre) as total FROM votos INNER JOIN usuarios ON votos.candidato= usuarios.id where votos.tipo_candidatura=2 group by usuarios.nombre,votos.municipio having MAX(total);
 select * from partidos where estado=1;
 update partidos set logo='imagenes/libre.png' where id=3;
+
+update usuarios set voto=0 where id='0801199318270';
 
 --__________________________________________--
 --CREDENCIALES

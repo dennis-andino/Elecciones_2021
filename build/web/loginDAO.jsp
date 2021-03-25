@@ -1,5 +1,4 @@
-<%--@page import="controlador.CeuMail"--%>
-<%-- @page import="controlador.ClienteCorreo"--%>
+
 <%@page import="controlador.UsuarioController"%>
 <%@page import="modelo.Usuario"%>
 <%@page import="java.util.logging.Level"%>
@@ -28,17 +27,19 @@
             user.setClave(claveoriginal_);
             user = userDAO.validar(user);
             if (user != null) {
+ 
                 request.getSession().setAttribute("id", user.getId_us());
                 request.getSession().setAttribute("nombre", user.getNombre());
-                request.getSession().setAttribute("correo", user.getCorreo());
-                request.getSession().setAttribute("telefono", user.getTelefono());
-                request.getSession().setAttribute("fechanac", user.getFecha_nac());
-                request.getSession().setAttribute("rol", user.getRol());
                 request.getSession().setAttribute("fotografia", user.getFotografia());
+                request.getSession().setAttribute("rol", user.getRol());
+                request.getSession().setAttribute("mesa", user.getMesa());
+                request.getSession().setAttribute("voto", user.getVoto());
+                request.getSession().setAttribute("departamento", user.getId_departamento());
+                request.getSession().setAttribute("municipio", user.getId_municipio());
+                request.getSession().setAttribute("estado_mesa", user.getEstadoMesa());
+                request.getSession().setAttribute("descripcion_mesa", user.getDescripcionMesa());
+              
                 int rol = user.getRol();
-               // System.out.println(" el rol es : " +  ((Object)rol).getClass().getSimpleName());
-               // System.exit(0);
-                
                 switch (rol) {
                     case 0: //usuario elector
                         out.print("<script>alert(\"Bienvenido " + request.getSession().getAttribute("nombre") + " \");window.location.href='home_elector.jsp?panel=panel_elector';</script>");

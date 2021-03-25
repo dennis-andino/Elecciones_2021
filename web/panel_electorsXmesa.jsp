@@ -1,10 +1,19 @@
+<%@page import="modelo.Usuario"%>
+<%@page import="java.util.List"%>
+<%@page import="controlador.UsuarioController"%>
+<%
+    int mesa_id = Integer.parseInt(request.getSession().getAttribute("mesa").toString());
+    UsuarioController consulta = new UsuarioController();
+    List<Usuario> lista_usuarios = consulta.ObtenerUsuariosPorMesa(mesa_id);
+%>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Electores asignados a mesa</h1>
+                    <h1 class="m-0 text-dark">ELECTORES PARA MESA <%=mesa_id%></h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,31 +34,36 @@
                 <div class="col">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
-                            <h5 class="m-0">Mesa 25</h5>
+                            <h5 class="m-0">Habilitacion de Electores</h5>
                         </div>
                         <div class="card-body table-responsive">
                             <table id="maintable" class="table table-bordered table-hover">
                                 <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Mesa Electoral</th>
-                                    <th>Direccion</th>
-                                    <th>Voto?</th>
-                                    <th></th>
-                                </tr>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Estado</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                
-                                        <tr>
-                                            <td><strong>0801199318270</strong></td>
-                                            <td>Dennis Andino</td>
-                                            <td>1</td>
-                                            <td>Francisco Morazan</td>
-                                            <td>No</td>
-                                            <td><form><button type="submit" class="btn btn-warning">Habilitar</button></form></td>
-                                        </tr>
-                                       
+                                    <% if (lista_usuarios.size() >= 1) {
+                                            for (int i = 0; i < lista_usuarios.size(); i++) {
+                                    %>
+                                    <tr>
+                                        <td><strong><%=lista_usuarios.get(i).getId_us()%></strong></td>
+                                        <td><%=lista_usuarios.get(i).getNombre()%></td>
+                                        <td><%
+
+                                            if (lista_usuarios.get(i).getVoto() == 0) {%>
+                                            <button type="submit" class="btn btn-danger">Habilitar</button>
+
+                                            <% } else {%>
+                                            <button type="submit" class="btn btn-warning">deshabilitar</button>
+                                            <%}%>
+                                        </td>
+                                    </tr>
+                                    <%}
+                                        }%>
                                 </tbody>
                             </table>
                         </div>

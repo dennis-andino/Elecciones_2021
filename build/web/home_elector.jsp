@@ -56,7 +56,7 @@
                             </a>
                         </li> 
                         <%
-                        if(request.getSession().getAttribute("voto")=="1"){
+                        if(request.getSession().getAttribute("voto").toString().equalsIgnoreCase("1")){
                         %>
                         <li class="nav-item">
                             <a href="home_admin.jsp?panel=panel_votar1" class="nav-link">

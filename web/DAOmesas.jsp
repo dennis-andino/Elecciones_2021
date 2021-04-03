@@ -50,6 +50,7 @@
                 out.print("<script>alert(\"No se pudo cerrar la mesa :C ! \");window.location.href='home_miembro.jsp?panel=panel_mesa';</script>");
             }
             break;
+           
         default:
             out.print("<script>alert(\"Upps Algo Salio mal ! no se puedo completar la accion solicitada ! \");window.location.href='index.php';</script>");
             break;

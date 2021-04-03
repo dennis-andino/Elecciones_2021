@@ -35,8 +35,17 @@
                  out.print("<script>alert(\"No pudimos eliminar el usuario, verifica la informacion proporcionada. ! \");window.location.href='home_admin.jsp?panel=descripcion_papeleta&partidoid=" + papeleta.getIdpartido() + "';</script>");
             }*/
             break;
+        case "estado":
+         int estado = Integer.parseInt(request.getParameter("estado")) ;
+         String id_user = request.getParameter("id_user") ;
+             if (control.cambiarEstadoVoto(estado, id_user)) {
+                out.print("<script>alert(\"El usuario ha sido habilitado para votar ! \");window.location.href='home_miembro.jsp?panel=panel_electorsXmesa';</script>");
+            } else {
+                out.print("<script>alert(\"No se pudo habilitar el usuario seleccionado :C ! \");window.location.href='home_miembro.jsp?panel=panel_electorsXmesa';</script>");
+            }
+            break;
         default:
-            out.print("<script>alert(\"Upps Algo Salio mal ! no se puedo completar la accion solicitada ! \");window.location.href='home_admin.jsp?panel=panel_partidos';</script>");
+            out.print("<script>alert(\"Upps Algo Salio mal ! no se puedo completar la accion solicitada ! \");window.location.href='home_miembro.jsp?panel=panel_electorsXmesa';</script>");
             break;
     }
 %>

@@ -40,9 +40,9 @@ public class UsuarioController {
                 us.setVoto(rs.getInt(6));
                 us.setId_departamento(rs.getInt(7));
                 us.setId_municipio(rs.getInt(8));
-                 us.setEstadoMesa(rs.getInt(10));
-                 us.setDescripcionMesa(rs.getString(11));
-                 
+                us.setEstadoMesa(rs.getInt(10));
+                us.setDescripcionMesa(rs.getString(11));
+
             }
             rs.close();
             ps.close();
@@ -90,9 +90,9 @@ public class UsuarioController {
         }
 
     }
-    
-     public List ObtenerUsuariosPorMesa(int mesa) {
-        String sql = "select id,nombre,voto from vista_login where mesa="+mesa;
+
+    public List ObtenerUsuariosPorMesa(int mesa) {
+        String sql = "select id,nombre,voto from vista_login where mesa=" + mesa;
         List<Usuario> tabla = new ArrayList<>();
         try {
             con = cn.conectar();
@@ -149,27 +149,26 @@ public class UsuarioController {
 
     }
 
-    public boolean guardar(Usuario usuario, int tipoMembre) throws Exception {
-        con = cn.conectar();
-        CallableStatement cst = con.prepareCall("{call insertaUsuario(?,?,?,?,?,?,?,?,?,?,?,?)}");
+    public boolean cambiarEstadoVoto(int estado, String id_user) throws SQLException {
+        int contador = 0;
+        Boolean respuesta = false;
+        String sql = "UPDATE usuarios SET voto=? WHERE id=?";
         try {
-            cst.setString("cla", usuario.getClave());
-            cst.setString("nom", usuario.getNombre());
-            cst.setString("ema", usuario.getCorreo());
-            cst.setString("tel", usuario.getTelefono());
-            cst.setString("fec", usuario.getFecha_nac());
-            cst.setInt("rl", usuario.getRol());
-            cst.setInt("tip", tipoMembre);
-            cst.execute();
-            System.out.println("Se guardo Correctamente");
-            cst.close();
-            con.close();
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e);
+            con = cn.conectar();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, estado);
+            ps.setString(2, id_user);
+            contador = ps.executeUpdate();
 
+        } catch (Exception e) {
+            System.out.println(e.getCause());
         }
-        return false;
+        ps.close();
+        cn.desconectar();
+        if (contador >= 1) {
+            respuesta = true;
+        }
+        return respuesta;
 
     }
 

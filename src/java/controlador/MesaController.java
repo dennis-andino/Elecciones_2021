@@ -38,6 +38,28 @@ public class MesaController {
         }
    }
    
+   public List ObtenerCoordenadas(int id_mesa) {
+        String sql = "SELECT concat('mesa #',concat(id,concat(' ',descripcion))) as descripcion, latitud, longitud FROM MESAS WHERE id="+id_mesa;
+        List<Mesa> tabla = new ArrayList<>();
+        try {
+            con = cn.conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Mesa mesa = new Mesa(rs.getString(1),rs.getString(2),rs.getString(3));
+                tabla.add(mesa);
+            }
+            rs.close();
+            ps.close();
+            cn.desconectar();
+            return tabla;
+
+        } catch (SQLException e) {
+            System.out.println("error:" + e);
+            return null;
+        }
+   }
+   
      
    public List ObtenerMesas() {
         String sql = "select * from vista_todas_mesas";

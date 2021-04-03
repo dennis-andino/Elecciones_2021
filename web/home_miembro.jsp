@@ -55,12 +55,17 @@
                                 <p>Mesa Electoral</p>
                             </a>
                         </li>
+                        <%
+                        int estado_mesa=Integer.parseInt(request.getSession().getAttribute("estado_mesa").toString()) ;
+                        if(estado_mesa==1){
+                        %>
                         <li class="nav-item">
                             <a href="home_miembro.jsp?panel=panel_electorsXmesa" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>Electores de mesa</p>
                             </a>
                         </li>
+                        <%}%>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                <i class="nav-icon fas fa-poll"></i>
@@ -68,19 +73,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="home_miembro.jsp?panel=panel_resultados" class="nav-link">
+                                    <a href="home_miembro.jsp?panel=estadisticas_presi_mesa" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Presidentes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="home_miembro.jsp?panel=panel_resultados" class="nav-link">
+                                    <a href="home_miembro.jsp?panel=estadisticas_alca_mesa" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Alcaldes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="home_miembro.jsp?panel=panel_resultados" class="nav-link">
+                                    <a href="home_miembro.jsp?panel=esatdisticas_dipu_mesa" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Diputados</p>
                                     </a>
@@ -88,14 +93,13 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="home_miembro.jsp?panel=panel_votar1" class="nav-link">
+                            <a href="home_miembro.jsp?panel=panel_mapa_mesa" class="nav-link">
                                 <i class="nav-icon  fas fa-map-marker-alt"></i>
-                                
                                 <p>Ubicacion de mesa</p>
                             </a>
                         </li>
                        <%
-                        if(request.getSession().getAttribute("voto")=="1"){
+                        if(request.getSession().getAttribute("voto").toString().equalsIgnoreCase("1")){
                         %>
                         <li class="nav-item">
                             <a href="home_admin.jsp?panel=panel_votar1" class="nav-link">

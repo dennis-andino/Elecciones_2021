@@ -63,7 +63,28 @@ public class EstadisticasController {
         }
 
     }
+    
+    public String ResultadosPorPresidentePieMesa(int mesa) {
+        String query = "SELECT usuarios.nombre,count(votos.candidato) as total FROM votos INNER JOIN usuarios ON votos.candidato= usuarios.id where votos.tipo_candidatura=1 AND votos.mesa="+mesa+" GROUP BY usuarios.nombre";
+        String resultado = "";
+        try {
+            con = cn.conectar();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                resultado += "{name:" + "'" + rs.getString(1) + "'" + ",y:" + rs.getString(2) + "},";
+            }
+            rs.close();
+            ps.close();
+            cn.desconectar();
+        } catch (SQLException e) {
+            resultado = null;
+        } finally {
 
+            return resultado;
+        }
+
+    }
     public String[] ResultadosPresidenteDep() {
         String query = "select * from vista_presidente_dep";
         String[] resultado = {"", ""};
@@ -136,6 +157,29 @@ public class EstadisticasController {
 
     }
     
+     public String[] AlcaldesPorMesa(int mesa) {
+        String query = "SELECT usuarios.nombre,count(votos.candidato) as total FROM votos INNER JOIN usuarios ON votos.candidato= usuarios.id where votos.tipo_candidatura=2 AND votos.mesa="+mesa+" GROUP BY usuarios.nombre";
+        String[] resultado = {"", ""};
+        try {
+            con = cn.conectar();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                resultado[0] += "'" + rs.getString(1) + "'" + ",";
+                resultado[1] += rs.getString(2) + ",";
+            }
+            rs.close();
+            ps.close();
+            cn.desconectar();
+        } catch (SQLException e) {
+            resultado = null;
+        } finally {
+            // System.out.println("ppepepe");
+            return resultado;
+        }
+
+    }
+    
     public List totalResultadosDiputados() {
         String sql = "select d.nombre as departamento,u.nombre as candidato, count(*) as total from votos v inner join usuarios u on v.candidato=u.id " +
 "inner join departamentos d on v.departamento=d.id where tipo_candidatura=3 group by d.nombre,u.nombre";
@@ -159,6 +203,29 @@ public class EstadisticasController {
         } catch (SQLException e) {
             System.out.println("error:" + e);
             return null;
+        }
+
+    }
+    
+     public String[] diputados_por_mesa(int mesa) {
+        String query = "SELECT usuarios.nombre,count(votos.candidato) as total FROM votos INNER JOIN usuarios ON votos.candidato= usuarios.id where tipo_candidatura=3 and votos.mesa="+ mesa +" GROUP BY usuarios.nombre";
+        String[] resultado = {"", ""};
+        try {
+            con = cn.conectar();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                resultado[0] += "'" + rs.getString(1) + "'" + ",";
+                resultado[1] += rs.getString(2) + ",";
+            }
+            rs.close();
+            ps.close();
+            cn.desconectar();
+        } catch (SQLException e) {
+            resultado = null;
+        } finally {
+            // System.out.println("ppepepe");
+            return resultado;
         }
 
     }

@@ -150,7 +150,7 @@ INSERT INTO USUARIOS(id,clave,nombre,correo,direccion,telefono,Fecha_nac,fotogra
 VALUES('0801199318296','pepe','Pedro Barahona Mejia','pedro@outlook.com','prados24 valle sula','98987654','01-01-1990','userdefault.png',0,2);
 commit;
 
-
+DELETE FROM MESAS WHERE ID=23;
 
 --------------------------------------------------------
 --Electores
@@ -209,9 +209,10 @@ select * from departamentos;
 --MUNICIPIOS
 -------------------------------------------------------
 
-INSERT INTO municipios(id,nombre,departamento) VALUES(secuencia_municipios.nextval,'DISTRITIO CENTRAL',1);
+INSERT INTO municipios(id,nombre,departamento) VALUES(secuencia_municipios.nextval,'DISTRITO CENTRAL',1);
 INSERT INTO municipios(id,nombre,departamento) VALUES(secuencia_municipios.nextval,'SAN PEDRO SULA',2);
 INSERT INTO municipios(id,nombre,departamento) VALUES(secuencia_municipios.nextval,'JUTICALPA',3);
+INSERT INTO municipios(id,nombre,departamento) VALUES(secuencia_municipios.nextval,'San antonio de oriente',1);
 
 COMMIT;
 select * from municipios;
@@ -364,7 +365,7 @@ update usuarios set voto=0 where id='0801199318270';
 usuario administror: 0801199318270
 clave: pepe
 
-usuario miembro mesa: 0801199318276
+usuario miembro mesa: 0801199318271
 clave: pepe
 
 usuario magistrado: 0801199318281
@@ -380,4 +381,4 @@ todos ya imprimen pdf
 mesas electorales , ya accede a mapa y muestra las mesas electorales
 
 
-
+select id from usuarios where mesa=1 and rol =2;

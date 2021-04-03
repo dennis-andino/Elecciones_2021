@@ -53,12 +53,14 @@
                                         <td><strong><%=lista_usuarios.get(i).getId_us()%></strong></td>
                                         <td><%=lista_usuarios.get(i).getNombre()%></td>
                                         <td><%
-
                                             if (lista_usuarios.get(i).getVoto() == 0) {%>
-                                            <button type="submit" class="btn btn-danger">Habilitar</button>
-
-                                            <% } else {%>
-                                            <button type="submit" class="btn btn-warning">deshabilitar</button>
+                                            <a href="DAOusuarios.jsp?accion=estado&estado=1&id_user=<%=lista_usuarios.get(i).getId_us()%>" class="btn btn-danger">Habilitar</a>
+                                            <% } else if (lista_usuarios.get(i).getVoto() == 1) {%>
+                                            <button class="btn btn-success" disabled="disabled">habilitado</button>
+                                            <%} else if (lista_usuarios.get(i).getVoto() == 2) {%>
+                                            <button class="btn btn-info" disabled="disabled">Ya voto</button>
+                                            <% } else { %>
+                                            <button class="btn btn-warning" disabled="disabled">Desconocido</button>
                                             <%}%>
                                         </td>
                                     </tr>

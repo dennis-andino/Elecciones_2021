@@ -29,11 +29,9 @@
                         </div>
                         <div class="card-header">
                             <div class="alert alert-danger" role="alert">
-                               Bienvenido Sr. Dennis , Solicite la habilitacion de su cuenta para ejercer su derecho.
+                                Bienvenido Sra.<%= request.getSession().getAttribute("nombre") %> , Solicite la habilitacion de su cuenta para ejercer su derecho.
                             </div>
-                             <div class="alert alert-success" role="alert">
-                               Bienvenido Sr. Dennis , Esta listo para votar, hagalo responsablemente.
-                            </div>
+                            
                         </div>
                         <div class="card-body">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">

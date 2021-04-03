@@ -7,20 +7,8 @@ database name: eleccionesdb
 username : eleccionesdb
 clave:root
 ------------------------------------------
+
 */
-
-
-select * from usuarios;
-select * from mesas;
-
-CREATE VIEW vista_login AS
-select U.id,U.nombre,U.fotografia,U.rol,U.mesa,U.voto,M.departamento,M.municipio,U.clave,m.estado,m.descripcion from usuarios U inner join mesas M on U.mesa=M.id;
-COMMIT;
-
-select * from vista_login;
-
-select id,nombre,voto from vista_login where mesa=1;
-
 --------------------------------------------------------
 --  TIPOS_CANDIDATURA
 --------------------------------------------------------
@@ -131,6 +119,9 @@ CREATE TABLE mesas (
 );
 CREATE SEQUENCE secuencia_mesas START WITH 1 INCREMENT BY 1;
 
+update mesas set latitud='14.1010715' where id=22;
+update mesas set longitud='-87.2429908' where id=22;
+COMMIT;
 --update mesas set estado=0 where id=1;
 --ALTER TABLE MESAS MODIFY estado NUMBER DEFAULT ( 0 );
 
@@ -154,12 +145,13 @@ CREATE TABLE usuarios (
 
 COMMIT;
 
-
+select voto from usuarios where id='0801199318270';
 SELECT
     concat('mesa #', concat(id, concat(' ', descripcion))) AS descripcion,latitud,longitud FROM mesas;
 
+UPDATE USUARIOS SET voto=0 where id='0801199318270';
+COMMIT;
 
-SELECT * FROM usuarios ORDER BY rol ASC;
 
 UPDATE mesas SET latitud = '14.085602943187286',longitud = '-87.16213542432806' WHERE id = 1;
 UPDATE mesas SET latitud = '15.530276492863548',longitud = '-88.03582577004546' WHERE id = 2;
@@ -318,6 +310,9 @@ COMMIT;
 --------------------------------------------------------
 --VISTAS
 --------------------------------------------------------
+CREATE VIEW vista_login AS
+select U.id,U.nombre,U.fotografia,U.rol,U.mesa,U.voto,M.departamento,M.municipio,U.clave,m.estado,m.descripcion from usuarios U inner join mesas M on U.mesa=M.id;
+COMMIT;
 
 CREATE VIEW vista_resultados_alcaldes AS
     SELECT

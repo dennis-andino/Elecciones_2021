@@ -38,7 +38,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<%="imagenes/" + request.getSession().getAttribute("fotografia")%>" class="img-circle elevation-2" alt="User Image">
+                        <img src="<%=request.getSession().getAttribute("fotografia")%>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block"><%=request.getSession().getAttribute("nombre")%></a>
@@ -81,14 +81,9 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="home_magistrado.jsp?panel=panel_papeletas" class="nav-link">
-                                <i class="nav-icon fas fa-vote-yea"></i>
-                                <p>Estadisticas</p>
-                            </a>
-                        </li>                    
-                         <%
-                        if(request.getSession().getAttribute("voto")=="1"){
+                                 
+                       <%
+                        if(request.getSession().getAttribute("voto").toString().equalsIgnoreCase("1")){
                         %>
                         <li class="nav-item">
                             <a href="home_admin.jsp?panel=panel_votar1" class="nav-link">
@@ -125,10 +120,7 @@
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
-    <!-- 
-    <?php if(isset($_SESSION['alert'])):?>
-    <script> swal("<?=$_SESSION['alert']['title']?>", "<?=$_SESSION['alert']['msj']?>", "<?=$_SESSION['alert']['type']?>");</script>
-    <?php unset($_SESSION['alert']); endif; ?>-->
+       <script src="assets/js/tablesFormats.js"></script>
 </body>
 </html>
 

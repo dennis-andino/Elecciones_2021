@@ -61,7 +61,7 @@
                                         <td><%=lista_usuarios.get(i).getCorreo() %></td>
                                         <td><%=lista_usuarios.get(i).getMesa() %></td>
                                         <td><%=lista_usuarios.get(i).getVoto() %></td>
-                                        <td>Modificar</td>
+                                        <td><a href="home_admin.jsp?panel=panel_editar_usuario" class="btn btn-warning btn-xs" >Modificar</a></td>
                                     </tr>
                                     <%}
                                            }%>
